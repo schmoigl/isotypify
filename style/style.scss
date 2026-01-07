@@ -1,0 +1,187 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: "Montserrat";
+$logo1-url: 'img/fuzzy-logo-small.svg';
+$logo2-url: 'img/logo-100.svg';
+$logo-width: 150px;
+$logo-height: 40px;
+$animation-duration: 0.7s;   
+
+
+/*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* quarto */
+pre, code, .callout, .sourceCode { // comment out until final deployment
+    display: none;
+}
+
+.navbar {
+    height: 3.75rem;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    border-top: 0;
+    border-bottom: .0625rem solid #000;
+    background-color: #fff;
+
+    .menu-text {
+        color: #000;
+    }
+}
+
+/* tooltip */
+#vg-tooltip-element, .tooltip {
+    background-color: rgba(255,255,255,1);
+    border-radius: 0px;
+    border: 1.5px solid;
+    font-family: "Century Gothic";
+    font-Size: 12px;
+}
+#vg-tooltip-element > table {
+    margin: 0px;
+}
+
+
+/* Range input styling */
+.range-container input[type="range"] {
+    -webkit-appearance: none;  /* Hides the slider so that custom slider can be made */
+    appearance: none;
+    width: 100%;
+    background: transparent;   /* Otherwise white in Chrome */
+    margin-right: 10px;
+}
+
+/* Slider track */
+.range-container input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.range-container input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.range-container input[type="range"]::-ms-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+/* Slider thumb */
+.range-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    margin-top: -5px; /* To properly align the thumb with the track */
+}
+
+.range-container input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.range-container input[type="range"]::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+/* logo */
+.logo-footer {
+    height: 30px;
+}
+
+.navbar-brand-logo {
+    position: relative;
+    display: inline-block;
+    width: $logo-width;
+    height: $logo-height;
+    vertical-align: middle;
+    perspective: 1000px;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: transform $animation-duration ease-in-out, opacity $animation-duration ease-in-out;
+        backface-visibility: hidden;
+    }
+
+    &::before {
+        background-image: url($logo1-url);
+        transform: rotateY(0deg);
+        opacity: 1;
+        z-index: 2;
+    }
+
+    &::after {
+        background-image: url($logo2-url);
+        transform: rotateY(180deg);
+        opacity: 0;
+        z-index: 1;
+    }
+
+    &:hover {
+        &::before {
+        transform: rotateY(-180deg);
+        opacity: 0;
+        }
+
+        &::after {
+        transform: rotateY(0deg);
+        opacity: 1;
+        }
+    }
+}
+
+.logo-container {
+  padding: 20px;
+  margin: 12px 0 0 0;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+}
+.logo-container-styleguide {
+  padding: 20px;
+  margin: 12px 0 12px 0;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+  display: flex; 
+  gap: 10px; 
+  flex-wrap: wrap;
+}
+.logo-container-styleguide p {
+  margin: 0;
+}
+.swatches {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  text-align: center;
+  min-width: 84px;
+}

@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: website
+  preview:
+    port: 1111
+    browser: true
+    watch-inputs: true
+  render: 
+    - index.qmd
+  resources:
+    - src/
+website:
+  title: "Template"
+  favicon: img/fuzzy-logo-small.ico
+  search: true
+  page-footer: |
+      [![](img/logo.svg){.logo-footer}](https://www.wifo.ac.at/) <br><br>
+      © 2025 — <a href="mailto:data.science@wifo.ac.at">data.science@wifo.ac.at</a>
+  navbar:
+    title: | 
+      <span></span>
+    left: 
+      - index.qmd
+    tools:
+      - icon: github
+        href: https://github.com/schmoigl
+format:
+  html:
+    theme: [style/style.scss]
+    grid:
+      body-width: 860px
+      margin-width: 380px
+      gutter-width: 8px
+    toc: false
+    page-layout: article
+    fontsize: 15px
+    anchor-sections: false

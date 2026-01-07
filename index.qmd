@@ -1,0 +1,72 @@
+---
+title: "Quarto"
+execute: 
+  eval: true
+  echo: false
+  output: true
+  warning: false
+  error: true
+  include: true
+---
+
+
+## R
+
+```{r}
+#| echo: false
+source("src/00_libs.R")
+```
+
+```{r}
+#| echo: false
+data <- read_csv("data/data.csv")
+```
+
+```{r}
+#| echo: false
+data |> 
+  filter(row_number()<20) |>
+  kable("html")
+```
+
+
+## JavaScript
+
+{{< include src/00_config.qmd >}}
+{{< include src/00_libs.qmd >}}
+{{< include src/00_utils.qmd >}}
+
+```{ojs}
+//| echo: false
+data = FileAttachment("data/data.csv").csv({ typed: true })
+```
+
+```{ojs}
+//| echo: false
+data
+```
+
+
+## Colors
+
+```{ojs}
+html`
+<div class="logo-container-styleguide">
+  ${colors_burger.map(color => html`
+    <div class="swatches">
+      <div 
+        title="${color}" 
+        style="
+          margin-bottom: 1em;
+          width: 24px; 
+          height: 24px; 
+          background-color: ${color}; 
+          border: 0.75px solid black;"
+      >
+      </div>
+      <div>${color}</div>
+      <div>${hexToRgb(color)}</div>
+    </div>
+  `)}
+</div>`
+```

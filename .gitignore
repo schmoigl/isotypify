@@ -1,0 +1,39 @@
+# folders
+.vscode/
+website/
+site_libs/
+keys/
+/.quarto/
+/out/
+/node_modules/
+*_files
+
+# R
+.Rhistory
+.vdoc.r
+.Rproj.user
+.RData
+.Ruserdata
+
+# TeX
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.bbl
+*.blg
+*~
+*.bak
+*.backup
+*.fdb_latexmk
+*.fls
+*.xdv
+
+# formats
+*.xlsx
+**/*.quarto_ipynb

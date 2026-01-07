@@ -1,0 +1,127 @@
+
+```{ojs}
+//| echo: false
+//| warning: false
+//| output: false
+makeWidth = function(inputWidth) {
+  if (inputWidth>1800) {
+    return 1200
+  }
+  if (inputWidth>1700) {
+    return 1100
+  }
+  if (inputWidth>1600) {
+    return 1000
+  }
+  if (inputWidth>1500) {
+    return 900
+  }
+  if (inputWidth>1400) {
+    return 800
+  }
+  if (inputWidth>1300) {
+    return 750
+  }
+  if (inputWidth>1200) {
+    return 700
+  }
+  if (inputWidth>1100) {
+    return 650
+  }
+  if (inputWidth>1000) {
+    return 600
+  }
+  if (inputWidth>900) {
+    return 550
+  }
+  if (inputWidth>800) {
+    return 500
+  }
+  else {
+    return 300
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+//| warning: false
+//| output: false
+germanLocale = d3.formatLocale({
+  decimal: ",",
+  thousands: "",
+  grouping: [3], 
+  currency: ["€", " "],
+})
+
+hexToRgb = function(hex) {
+  const bigint = parseInt(hex.replace(/^#/, ""), 16)
+  const r = (bigint >> 16) & 255
+  const g = (bigint >> 8) & 255
+  const b = bigint & 255
+  return `(${r}, ${g}, ${b})`
+}
+```
+
+```{ojs}
+//| echo: false
+//| warning: false
+//| output: false
+colors = [
+  "#72bb6f",
+  "#559bd5",
+  "#f3d039",
+  "#c3423f", 
+  "#12a7e7",
+  "#96b428",
+  "#559e8f",
+  "#f3d039",
+  "#559e8f",
+  "#2d5b5e",
+]
+colors_diverging = [
+  "#2d76b3", 
+  "#559bd5", 
+  "#99c4e6",
+  "#bbd7ee", 
+  "#ddebf7", 
+  "#e3f1e2", 
+  "#c7e3c6", 
+  "#abd6a9", 
+  "#72bb6f", 
+  "#4b9847",
+]
+colors_npr = [
+  "#D62021",
+  "#000000",
+  "#237BBD",
+]
+colors_burger = [
+  "#D62300",
+  "#FF8732",
+  "#502314",
+  "#F5EBDC",
+  "#198737",
+  "#FFAA00",
+]
+colors_oekostrom = [
+  "#05a56f",
+  "#eb6761",
+  "#b4e800",
+  "#26c4d3",
+  "#d28cec",
+  "#aaaaaa",
+  "#ffffff",
+  "#ffd925"
+]
+colors_fiw = [
+  "#3e5ba2", // deep blue
+  "#df5154", // vibrant red
+  "#4caf50", // green
+  "#ffb74d", // orange
+  "#9575cd", // purple
+  "#26c6da", // cyan
+  "#f06292", // pink
+  "#ffd54f"  // yellow
+]
+```
