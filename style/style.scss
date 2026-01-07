@@ -1,5 +1,5 @@
 /*-- scss:defaults --*/
-$font-family-sans-serif: "Montserrat";
+$font-family-sans-serif: "Jost";
 $logo1-url: 'img/fuzzy-logo-small.svg';
 $logo2-url: 'img/logo-100.svg';
 $logo-width: 150px;
@@ -10,10 +10,6 @@ $animation-duration: 0.7s;
 /*-- scss:rules --*/
 @import url('https://fonts.cdnfonts.com/css/isotype');
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-
-body, h1 {
-    font-family: "Jost"
-}
 
 form, output {
     font-family: "Jost" !important;
