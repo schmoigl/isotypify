@@ -8,7 +8,44 @@ $animation-duration: 0.7s;
 
 
 /*-- scss:rules --*/
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/isotype');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+body, h1 {
+    font-family: "Jost"
+}
+
+form, output {
+    font-family: "Jost" !important;
+    font-size: 15px !important;  
+}
+
+.testIcons {
+    font-family: "Isotype";
+    font-size: 72px;
+}
+
+#bar {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.children {
+    height: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    transform: translateY(30px)
+}
 
 /* quarto */
 pre, code, .callout, .sourceCode { // comment out until final deployment
@@ -27,19 +64,6 @@ pre, code, .callout, .sourceCode { // comment out until final deployment
         color: #000;
     }
 }
-
-/* tooltip */
-#vg-tooltip-element, .tooltip {
-    background-color: rgba(255,255,255,1);
-    border-radius: 0px;
-    border: 1.5px solid;
-    font-family: "Century Gothic";
-    font-Size: 12px;
-}
-#vg-tooltip-element > table {
-    margin: 0px;
-}
-
 
 /* Range input styling */
 .range-container input[type="range"] {
@@ -157,31 +181,4 @@ pre, code, .callout, .sourceCode { // comment out until final deployment
         opacity: 1;
         }
     }
-}
-
-.logo-container {
-  padding: 20px;
-  margin: 12px 0 0 0;
-  background-color: #f2f2f2;
-  border-radius: 6px;
-}
-.logo-container-styleguide {
-  padding: 20px;
-  margin: 12px 0 12px 0;
-  background-color: #f2f2f2;
-  border-radius: 6px;
-  display: flex; 
-  gap: 10px; 
-  flex-wrap: wrap;
-}
-.logo-container-styleguide p {
-  margin: 0;
-}
-.swatches {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 14px;
-  text-align: center;
-  min-width: 84px;
 }

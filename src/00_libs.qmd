@@ -4,15 +4,6 @@
 //| echo: false
 //| warning: false
 //| output: false
-import {vl} from "@vega/vega-lite-api-v5"
-import {aq, op} from '@uwdata/arquero'
-// geo = require("geotoolbox@2")
-// arrow = require('apache-arrow')
-// pq = {
-//   const pq = await import('https://unpkg.com/parquet-wasm@0.1.1/web.js')
-//   await pq.default()
-//   return pq
-// }
-// dataRaw = FileAttachment("data/data.parquet")
-// data = pq.readParquet(new Uint8Array(await dataRaw.arrayBuffer()))
+import { slider, radio, button } from '@jashkenas/inputs'
+d3 = require("d3@6")
 ```
