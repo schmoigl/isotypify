@@ -48,9 +48,9 @@ form, output {
 }
 
 /* quarto */
-pre, code, .callout, .sourceCode { // comment out until final deployment
-    display: none;
-}
+// pre, code, .callout, .sourceCode { // comment out until final deployment
+//     display: none;
+// }
 
 .navbar {
     height: 3.75rem;
@@ -63,69 +63,6 @@ pre, code, .callout, .sourceCode { // comment out until final deployment
     .menu-text {
         color: #000;
     }
-}
-
-/* Range input styling */
-.range-container input[type="range"] {
-    -webkit-appearance: none;  /* Hides the slider so that custom slider can be made */
-    appearance: none;
-    width: 100%;
-    background: transparent;   /* Otherwise white in Chrome */
-    margin-right: 10px;
-}
-
-/* Slider track */
-.range-container input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 5px;
-    cursor: pointer;
-    background: #ddd;
-    border-radius: 5px;
-}
-
-.range-container input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 5px;
-    cursor: pointer;
-    background: #ddd;
-    border-radius: 5px;
-}
-
-.range-container input[type="range"]::-ms-track {
-    width: 100%;
-    height: 5px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-}
-
-/* Slider thumb */
-.range-container input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-    margin-top: -5px; /* To properly align the thumb with the track */
-}
-
-.range-container input[type="range"]::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-.range-container input[type="range"]::-ms-thumb {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
 }
 
 /* logo */
