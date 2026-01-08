@@ -123,14 +123,14 @@ vizCustom = makeIsoline({
     { 
       key: "Frauen", 
       value: 0.75, 
-      shapes: "abcdefghilmnopq", 
+      shapes: "Babcdefghilmnopq", 
       fillHighlight: "coral",
       fillNormal: "#eee"
     },
     { 
       key: "Männer", 
       value: 0.30, 
-      shapes: "SBDEGHIJKLNOPRSTVWZ",
+      shapes: "SDEGHIJKLNOPRSTVWZ",
       fillHighlight: "green",
       fillNormal: "#ddd"
     }
