@@ -154,9 +154,7 @@ All possible Icons:
 
 <p class="testIcons">©®§°</p>
 
-<p class="testIcons">ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝ</p>
-
-<p class="testIcons">àáâãäåæçèéêëìíîïñòóôõöøùúûüý</p>
+<p class="testIcons">ÀÁÂÃÄÅÆÇÈ</p>
 
 <!-- <p class="testIcons">abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ<p> -->
 
