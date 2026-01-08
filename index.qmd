@@ -1,5 +1,5 @@
 ---
-title: "Isobar Chart"
+title: "Isolines"
 execute: 
   eval: true
   echo: false
@@ -12,10 +12,8 @@ execute:
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
 
-<!-- <p class="testIcons">abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ<p> -->
-
 ```{ojs}
-createVisualization = (params = {}) => {
+makeIsoline = (params = {}) => {
   const {
     data = null,
     vizWidth = width,
@@ -119,7 +117,8 @@ createVisualization = (params = {}) => {
 
 ```{ojs}
 // Example with custom parameters (commented out)
-vizCustom = createVisualization({
+vizCustom = makeIsoline({
+  persPerLineValue: 20,
   data: [
     { 
       key: "Frauen", 
@@ -138,3 +137,48 @@ vizCustom = createVisualization({
   ]
 })
 ```
+
+# Possible Icons
+
+All possible Icons:
+
+<p class="testIcons">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+<p class="testIcons">abcdefghijklmnopqrstuvwxyz</p>
+
+<p class="testIcons">1234567890</p>
+
+<p class="testIcons">!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~</p>
+
+<p class="testIcons">€£¥¢$</p>
+
+<p class="testIcons">©®§°</p>
+
+<p class="testIcons">ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝ</p>
+
+<p class="testIcons">àáâãäåæçèéêëìíîïñòóôõöøùúûüý</p>
+
+<!-- <p class="testIcons">abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ<p> -->
+
+<!-- ```{ojs}
+// Example with custom parameters (commented out)
+vizCustom2 = makeIsoline({
+  persPerLineValue: 20,
+  data: [
+    { 
+      key: "Frauen", 
+      value: 0.75, 
+      shapes: "abcdefghilmnopq", 
+      fillHighlight: "coral",
+      fillNormal: "#eee"
+    },
+    { 
+      key: "Männer", 
+      value: 0.30, 
+      shapes: "SBDEGHIJKLNOPRSTVWZ",
+      fillHighlight: "green",
+      fillNormal: "#ddd"
+    }
+  ]
+})
+``` -->
