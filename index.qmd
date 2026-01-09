@@ -116,12 +116,6 @@ makeIsoline = (params = {}) => {
 }
 ```
 
-```{r}
-#| output: asis
-#| include: false
-source("prep.R")
-```
-
 ```{ojs}
 zeitverwendung = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true})
 ```
@@ -191,23 +185,7 @@ viz_data = zeitverwendung.map(d => ({
 ```
 
 ```{ojs}
-// Example with custom parameters (commented out)
-vizCustom = createVisualization({
-  data: [
-    { 
-      key: "Frauen", 
-      value: 0.75, 
-      shapes: "abcdefghilmnopq", 
-      fillHighlight: "coral",
-      fillNormal: "#eee"
-    },
-    { 
-      key: "Männer", 
-      value: 0.30, 
-      shapes: "SBDEGHIJKLNOPRSTVWZ",
-      fillHighlight: "green",
-      fillNormal: "#ddd"
-    }
-  ]
+isolines = makeIsoline({
+  data: viz_data
 })
-``` -->
+```
