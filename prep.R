@@ -58,7 +58,7 @@ data_long <- data_raw %>%
   filter(!is.na(aktivitaet)) %>%
   filter(!str_starts(aktivitaet, "Q:")) %>%
   filter(geschlecht %in% c("Frauen", "Männer")) %>%
-  filter(!aktivitaet %in% c("Schlafen", "Essen und andere persönliche Tätigkeiten")) %>%
+  filter(!aktivitaet %in% c("Nicht näher bestimmte Zeitverwendung", "Soziale Kontakte und Freizeit", "Schlafen", "Essen und andere persönliche Tätigkeiten")) %>%
   select(aktivitaet, geschlecht, metrik, wert_numeric)
 
 # Keep in long format but pivot metrics wider for each activity-geschlecht combination

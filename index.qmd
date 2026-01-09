@@ -1,5 +1,5 @@
 ---
-title: "Isolines"
+title: "Zeitverwendung"
 execute: 
   eval: true
   echo: false
@@ -24,11 +24,19 @@ makeIsoline = (params = {}) => {
     persPerLineValue = Math.floor(vizWidth / cellWidth) - 1,
     defaultShapes = "abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ",
     defaultFillHighlight = "steelblue",
-    defaultFillNormal = "#ddd"
+    defaultFillNormal = "#ddd",
+    randomOrder = true,  // true for random, false for sequential
+    groupByKey = false   // true to group subkeys under each key
   } = params;
 
-  // Create a row for each data item
-  const rows = data.map((item, rowIndex) => {
+  // Group data by key if groupByKey is true
+  const dataGroups = groupByKey
+    ? Array.from(d3.group(data, d => d.key), ([key, items]) => ({ key, items }))
+    : data.map(item => ({ key: item.key, items: [item] }));
+
+  // Create rows for each group
+  const rows = dataGroups.map((group, groupIndex) => {
+    const groupRows = group.items.map((item, rowIndex) => {
     const highlightValue = item.value;
     const shapes = item.shapes || defaultShapes;
     const fillHighlight = item.fillHighlight || defaultFillHighlight;
@@ -40,8 +48,9 @@ makeIsoline = (params = {}) => {
     const generatePersonCustom = seed => {
       const avatarChoices = shapes;
       const id = "person_" + d3.format("0>4")(seed) + "_row" + rowIndex;
-      const avatar =
-        avatarChoices[parseInt(md5(id).slice(0, 2), 16) % avatarChoices.length];
+      const avatar = randomOrder
+        ? avatarChoices[parseInt(md5(id).slice(0, 2), 16) % avatarChoices.length]
+        : avatarChoices[seed % avatarChoices.length];
       return {
         id,
         avatar,
@@ -100,9 +109,18 @@ makeIsoline = (params = {}) => {
     // Return row with label
     return html`
       <div style="margin-bottom: 6px;">
-        <h3 style="font-family: Jost; margin: 0 0 0 0;">${item.key}</h3>
+        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: Jost; margin: 0 0 0 0;">${group.key}</h3>` : html``}
+        ${!groupByKey ? html`<h3 style="font-family: Jost; margin: 0 0 0 0;">${item.key}</h3>` : html``}
         ${percentageText}
         ${vizSvg}
+      </div>
+    `;
+    });
+
+    // Return group container
+    return html`
+      <div style="margin-bottom: ${groupByKey ? '20px' : '0px'};">
+        ${groupRows}
       </div>
     `;
   });
@@ -124,20 +142,20 @@ zeitverwendung = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true
 // Define shape lookup table by activity and gender
 shapeLookup = new Map([
   // Erwerbstätigkeit
-  ["Erwerbstätigkeit_Frauen", "a"],
-  ["Erwerbstätigkeit_Männer", "A"],
+  ["Erwerbstätigkeit_Frauen", "coilmnpq>"],
+  ["Erwerbstätigkeit_Männer", "PTJWXY<F"],
 
-  // Qualifizierung, Bildung und Ausbildung
-  ["Qualifizierung, Bildung und Ausbildung_Frauen", "b"],
-  ["Qualifizierung, Bildung und Ausbildung_Männer", "B"],
+  // Aus- und Weiterbildung
+  ["Aus- und Weiterbildung_Frauen", "Bh"],
+  ["Aus- und Weiterbildung_Männer", "AHD"],
 
-  // Haushaltsführung und Betreuung der Familie
-  ["Haushaltsführung und Betreuung der Familie_Frauen", "c"],
-  ["Haushaltsführung und Betreuung der Familie_Männer", "C"],
+  // Sorgearbeit in Haushalt und Familie
+  ["Sorgearbeit in Haushalt und Familie_Frauen", "a1a6a2a7a3a8"],
+  ["Sorgearbeit in Haushalt und Familie_Männer", "G1G6G2G7G3G8"],
 
-  // Ehrenamtliche Tätigkeiten, Freiwilligenarbeit, informelle Hilfe
-  ["Ehrenamtliche Tätigkeiten, Freiwilligenarbeit, informelle Hilfe_Frauen", "d"],
-  ["Ehrenamtliche Tätigkeiten, Freiwilligenarbeit, informelle Hilfe_Männer", "D"],
+  // Freiwilligentätigkeiten
+  ["Freiwilligentätigkeiten_Frauen", "i"],
+  ["Freiwilligentätigkeiten_Männer", "L"],
 
   // Soziales Leben und Unterhaltung
   ["Soziales Leben und Unterhaltung_Frauen", "e"],
@@ -155,9 +173,9 @@ shapeLookup = new Map([
   ["Fortbewegung, Mobilität_Frauen", "h"],
   ["Fortbewegung, Mobilität_Männer", "H"],
 
-  // Nicht spezifizierbare Zeitverwendung
-  ["Nicht spezifizierbare Zeitverwendung_Frauen", "i"],
-  ["Nicht spezifizierbare Zeitverwendung_Männer", "I"],
+  // Nicht näher bestimmte Zeitverwendung
+  ["Nicht näher bestimmte Zeitverwendung_Frauen", "i"],
+  ["Nicht näher bestimmte Zeitverwendung_Männer", "I"],
 
   // Default fallback
   ["Frauen", "abcdefghilmnopq"],
@@ -186,7 +204,11 @@ viz_data = zeitverwendung.map(d => ({
 
 ```{ojs}
 isolines = makeIsoline({
-  data: viz_data
+  data: viz_data,
+  persPerLineValue: 40,
+  cellWidth: 24,
+  randomOrder: false,  // Set to true for random order, false for sequential
+  groupByKey: true     // Set to true to group subkeys (gender) under each key (activity)
 })
 ```
 
