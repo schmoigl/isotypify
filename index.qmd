@@ -35,6 +35,7 @@ createVisualization = (params = {}) => {
     const shapes = item.shapes || defaultShapes;
     const fillHighlight = item.fillHighlight || defaultFillHighlight;
     const fillNormal = item.fillNormal || defaultFillNormal;
+    const subkey = item.subkey || "Personen";
     const highlightCountValue = Math.round(persPerLineValue * highlightValue);
 
     // Generate person with custom alphabet
@@ -57,7 +58,7 @@ createVisualization = (params = {}) => {
 
       return svg`
         <g class="person">
-          <text baseline-shift="-${personHeight}px"
+          <text y="0"
             style="font-size: ${personHeight}px; font-family: Isotype"
             fill="${fillColor}"
             stroke="${strokeColor}"
@@ -65,7 +66,7 @@ createVisualization = (params = {}) => {
             ${p.avatar}
           </text>
 
-        <text baseline-shift="-${personHeight}px"
+        <text y="0"
           style="font-size: ${personHeight}px; font-family: Isotype;"
           fill="${fillColor}">
             ${p.avatar}
@@ -94,7 +95,7 @@ createVisualization = (params = {}) => {
     // Create the percentage span
     const percentageText = html`
       <span style="color: ${fillHighlight}; font-family: Jost;">
-        ${Math.round(highlightValue * 100)} von 100
+        ${Math.round(highlightValue * 100)} von 100 ${subkey}
       </span>
     `;
 
@@ -117,24 +118,82 @@ createVisualization = (params = {}) => {
 }
 ```
 
+```{r}
+#| output: asis
+#| include: false
+source("prep.R")
+```
+
 ```{ojs}
-// Example with custom parameters (commented out)
+zeitverwendung = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true})
+```
+
+```{ojs}
+// Define shape lookup table by activity and gender
+shapeLookup = new Map([
+  // Erwerbstätigkeit
+  ["Erwerbstätigkeit_Frauen", "a"],
+  ["Erwerbstätigkeit_Männer", "A"],
+
+  // Qualifizierung, Bildung und Ausbildung
+  ["Qualifizierung, Bildung und Ausbildung_Frauen", "b"],
+  ["Qualifizierung, Bildung und Ausbildung_Männer", "B"],
+
+  // Haushaltsführung und Betreuung der Familie
+  ["Haushaltsführung und Betreuung der Familie_Frauen", "c"],
+  ["Haushaltsführung und Betreuung der Familie_Männer", "C"],
+
+  // Ehrenamtliche Tätigkeiten, Freiwilligenarbeit, informelle Hilfe
+  ["Ehrenamtliche Tätigkeiten, Freiwilligenarbeit, informelle Hilfe_Frauen", "d"],
+  ["Ehrenamtliche Tätigkeiten, Freiwilligenarbeit, informelle Hilfe_Männer", "D"],
+
+  // Soziales Leben und Unterhaltung
+  ["Soziales Leben und Unterhaltung_Frauen", "e"],
+  ["Soziales Leben und Unterhaltung_Männer", "E"],
+
+  // Sport, Hobby und andere Freizeitaktivitäten
+  ["Sport, Hobby und andere Freizeitaktivitäten_Frauen", "f"],
+  ["Sport, Hobby und andere Freizeitaktivitäten_Männer", "F"],
+
+  // Massenmedien
+  ["Massenmedien_Frauen", "g"],
+  ["Massenmedien_Männer", "G"],
+
+  // Fortbewegung, Mobilität
+  ["Fortbewegung, Mobilität_Frauen", "h"],
+  ["Fortbewegung, Mobilität_Männer", "H"],
+
+  // Nicht spezifizierbare Zeitverwendung
+  ["Nicht spezifizierbare Zeitverwendung_Frauen", "i"],
+  ["Nicht spezifizierbare Zeitverwendung_Männer", "I"],
+
+  // Default fallback
+  ["Frauen", "abcdefghilmnopq"],
+  ["Männer", "SBDEGHIJKLNOPRSTVWZ"],
+])
+
+// Helper function to get shapes
+getShapes = (aktivitaet, geschlecht) => {
+  const key = `${aktivitaet}_${geschlecht}`;
+  return shapeLookup.get(key) || shapeLookup.get(geschlecht) || "abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ";
+}
+```
+
+```{ojs}
+// Prepare all data for visualization
+viz_data = zeitverwendung.map(d => ({
+  key: d.aktivitaet,
+  subkey: d.geschlecht,
+  geschlecht: d.geschlecht,
+  value: d.anteil_ausuebende_prozent / 100,
+  shapes: getShapes(d.aktivitaet, d.geschlecht),
+  fillHighlight: d.geschlecht === "Frauen" ? "coral" : "green",
+  fillNormal: d.geschlecht === "Frauen" ? "#eee" : "#ddd"
+}))
+```
+
+```{ojs}
 vizCustom = createVisualization({
-  data: [
-    { 
-      key: "Frauen", 
-      value: 0.75, 
-      shapes: "abcdefghilmnopq", 
-      fillHighlight: "coral",
-      fillNormal: "#eee"
-    },
-    { 
-      key: "Männer", 
-      value: 0.30, 
-      shapes: "SBDEGHIJKLNOPRSTVWZ",
-      fillHighlight: "green",
-      fillNormal: "#ddd"
-    }
-  ]
+  data: viz_data
 })
 ```
