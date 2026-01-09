@@ -1,5 +1,5 @@
 ---
-title: "Isobar Chart"
+title: "Isolines"
 execute: 
   eval: true
   echo: false
@@ -12,10 +12,8 @@ execute:
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
 
-<!-- <p class="testIcons">abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ<p> -->
-
 ```{ojs}
-createVisualization = (params = {}) => {
+makeIsoline = (params = {}) => {
   const {
     data = null,
     vizWidth = width,
@@ -193,7 +191,23 @@ viz_data = zeitverwendung.map(d => ({
 ```
 
 ```{ojs}
+// Example with custom parameters (commented out)
 vizCustom = createVisualization({
-  data: viz_data
+  data: [
+    { 
+      key: "Frauen", 
+      value: 0.75, 
+      shapes: "abcdefghilmnopq", 
+      fillHighlight: "coral",
+      fillNormal: "#eee"
+    },
+    { 
+      key: "Männer", 
+      value: 0.30, 
+      shapes: "SBDEGHIJKLNOPRSTVWZ",
+      fillHighlight: "green",
+      fillNormal: "#ddd"
+    }
+  ]
 })
-```
+``` -->
