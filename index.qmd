@@ -189,3 +189,20 @@ isolines = makeIsoline({
   data: viz_data
 })
 ```
+
+
+All possible Icons:
+
+<p class="testIcons">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+<p class="testIcons">abcdefghijklmnopqrstuvwxyz</p>
+
+<p class="testIcons">1234567890</p>
+
+<p class="testIcons">!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~</p>
+
+<p class="testIcons">€£¥¢$</p>
+
+<p class="testIcons">©®§°</p>
+
+<p class="testIcons">ÀÁÂÃÄÅÆÇÈ</p>
