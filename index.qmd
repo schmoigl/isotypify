@@ -143,7 +143,7 @@ zeitverwendung = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true
 shapeLookup = new Map([
   // Erwerbstätigkeit
   ["Erwerbstätigkeit_Frauen", "coilmnpq>"],
-  ["Erwerbstätigkeit_Männer", "PTJWXY<F"],
+  ["Erwerbstätigkeit_Männer", "PTJWXY<"],
 
   // Aus- und Weiterbildung
   ["Aus- und Weiterbildung_Frauen", "Bh"],
