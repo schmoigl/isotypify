@@ -127,7 +127,7 @@ makeIsoline = (params = {}) => {
 
   // Return all rows in a container
   return html`
-    <div>
+    <div style="margin: 12px 0">
       ${rows}
     </div>
   `;
@@ -203,8 +203,13 @@ viz_data = zeitverwendung.map(d => ({
 ```
 
 ```{ojs}
+viewof selectAktivitaet = Inputs.select(
+  [... new Set(viz_data.map(d => d.key))], 
+  {label: "Aktivität"}
+  )
+
 isolines = makeIsoline({
-  data: viz_data,
+  data: viz_data.filter(d => d.key == selectAktivitaet),
   persPerLineValue: 40,
   cellWidth: 24,
   randomOrder: false,  // Set to true for random order, false for sequential
