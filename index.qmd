@@ -1,5 +1,5 @@
 ---
-title: "Wer macht was?"
+title: "Wer macht das?"
 subtitle: "Geschlechterunterschiede in der Zeitverwendung in Österreich"
 execute:
   eval: true
@@ -123,7 +123,7 @@ makeIsoline = (params = {}) => {
 
     // Return group container
     return html`
-      <div style="margin-bottom: ${groupByKey ? '20px' : '0px'};">
+      <div style="margin-bottom: ${groupByKey ? '0px' : '0px'};">
         ${groupRows}
       </div>
     `;
@@ -190,7 +190,7 @@ aktivitaetGroups = {
 viewof selectAktivitaet = groupedSelect({
   value: "Erwerbstätigkeit - Gesamt",
   groups: aktivitaetGroups,
-  title: "Wählen sie eine Aktivität"
+  title: "Wählen sie eine Aktivität: "
 })
 
 isolines = makeIsoline({
@@ -202,7 +202,15 @@ isolines = makeIsoline({
 })
 ```
 
-Datenquelle: [Statistik Austria – Zeitverwendung](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung)
+<p style="margin-top:0px">Datenquelle: [Statistik Austria – Zeitverwendung](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung)</p>
+
+```{ojs}
+selectedData = zeitverwendung.filter(d => d.aktivitaet === selectAktivitaet)
+frauenData = selectedData.find(d => d.geschlecht === "Frauen")
+maennerData = selectedData.find(d => d.geschlecht === "Männer")
+
+htl.html`${Math.round(frauenData?.anteil_ausuebende_prozent)}% aller Frauen geben an, in einer Woche Zeit mit <em>${selectAktivitaet}</em> zu verbringen. Frauen verbringen im Schnitt ${frauenData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden damit. Für Männer belaufen sich diese Zahlen auf ${Math.round(maennerData?.anteil_ausuebende_prozent)}% und ${maennerData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden.`
+```
 
 <!-- All possible Icons:
 
