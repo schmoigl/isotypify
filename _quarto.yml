@@ -10,8 +10,8 @@ project:
   resources:
     - src/
 website:
-  title: "Template"
-  favicon: img/fuzzy-logo-small.ico
+  title: "ISOTYPE"
+  favicon: img/favicon.ico
   navbar: false
 format:
   html:

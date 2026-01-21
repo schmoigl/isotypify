@@ -1,6 +1,7 @@
 ---
-title: "Zeitverwendung"
-execute: 
+title: "Wer macht was?"
+subtitle: "Geschlechterunterschiede in der Zeitverwendung in Österreich"
+execute:
   eval: true
   echo: false
   output: true
@@ -8,6 +9,9 @@ execute:
   error: true
   include: true
 ---
+
+
+Die Isolinien auf dieser Seite zeigen, wie Frauen und Männer in Österreich ihre Zeit verbringen. Jede Figur steht für eine Person von hundert – rot für Frauen, blau für Männer. Auf einen Blick wird sichtbar, wo die Unterschiede liegen: Wer arbeitet mehr im Haushalt? Wer verbringt mehr Zeit mit Kinderbetreuung? Wer ist länger erwerbstätig? Die Darstellung folgt der Tradition der Wiener Bildstatistik, die Marie Neurath und Otto Neurath in den 1920er Jahren am Gesellschafts- und Wirtschaftsmuseum entwickelt haben. Ihr Ziel: komplexe Daten für alle verständlich machen.
 
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
@@ -109,8 +113,8 @@ makeIsoline = (params = {}) => {
     // Return row with label
     return html`
       <div style="margin-bottom: 6px;">
-        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: Jost; margin: 0 0 0 0;">${group.key}</h3>` : html``}
-        ${!groupByKey ? html`<h3 style="font-family: Jost; margin: 0 0 0 0;">${item.key}</h3>` : html``}
+        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: Jost; margin: 0 0 12px 0;">${group.key}</h3>` : html``}
+        ${!groupByKey ? html`<h3 style="font-family: Jost; margin: 0 0 12px 0;">${item.key}</h3>` : html``}
         ${percentageText}
         ${vizSvg}
       </div>
@@ -127,7 +131,7 @@ makeIsoline = (params = {}) => {
 
   // Return all rows in a container
   return html`
-    <div style="margin: 12px 0">
+    <div style="margin: 30px 0 0px 0">
       ${rows}
     </div>
   `;
@@ -140,33 +144,53 @@ zeitverwendung = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true
 
 ```{ojs}
 // Prepare all data for visualization
+// Using Otto Neurath Isotype-style colors: red for women, blue for men
 viz_data = zeitverwendung.map(d => ({
   key: d.aktivitaet,
   subkey: d.geschlecht,
   geschlecht: d.geschlecht,
   value: d.anteil_ausuebende_prozent / 100,
   shapes: getShapes(d.aktivitaet, d.kategorie, d.geschlecht),
-  fillHighlight: d.geschlecht === "Frauen" ? "coral" : "green",
-  fillNormal: d.geschlecht === "Frauen" ? "#eee" : "#ddd"
+  fillHighlight: d.geschlecht === "Frauen" ? "#c1272d" : "#1e3a5f",  // Neurath red / Neurath blue
+  fillNormal: d.geschlecht === "Frauen" ? "#e8d5d5" : "#d5dce3"      // Light tints
 }))
 ```
 
 ```{ojs}
-// Build groups from kategorie column
+// Build groups from kategorie column, marking high gender differences
 aktivitaetGroups = {
   const grouped = d3.group(zeitverwendung, d => d.kategorie);
+  const threshold = 5; // percentage points
+
   return Array.from(grouped, ([kategorie, items]) => ({
     label: kategorie,
-    options: [...new Set(items.map(d => d.aktivitaet))].map(a => ({
-      value: a,
-      label: a
-    }))
+    options: [...new Set(items.map(d => d.aktivitaet))].map(aktivitaet => {
+      // Get the first row for this activity (difference is the same for both genders)
+      const row = items.find(d => d.aktivitaet === aktivitaet);
+      const diff = row?.differenz_anteil || 0;
+      const absDiff = Math.abs(diff);
+
+      // Mark as highlighted if difference exceeds threshold, with gender-specific value
+      let highlight = null;
+      let marker = "";
+      if (absDiff > threshold) {
+        highlight = diff > 0 ? "female" : "male";
+        marker = diff > 0 ? " (F+)" : " (M+)";
+      }
+
+      return {
+        value: aktivitaet,
+        label: aktivitaet + marker,
+        highlight: highlight
+      };
+    })
   }));
 }
 
 viewof selectAktivitaet = groupedSelect({
-  value: zeitverwendung[0]?.aktivitaet,
-  groups: aktivitaetGroups
+  value: "Erwerbstätigkeit - Gesamt",
+  groups: aktivitaetGroups,
+  title: "Wählen sie eine Aktivität"
 })
 
 isolines = makeIsoline({
@@ -178,7 +202,7 @@ isolines = makeIsoline({
 })
 ```
 
-
+Datenquelle: [Statistik Austria – Zeitverwendung](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung)
 
 <!-- All possible Icons:
 

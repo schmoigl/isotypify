@@ -299,7 +299,9 @@ groupedSelect = (config = {}) => {
     description,
     multiple,
     size,
-    groups
+    groups,
+    highlightColorFemale = "rgba(255, 127, 80, 0.3)",  // coral with transparency for F+
+    highlightColorMale = "rgba(0, 128, 0, 0.3)"       // green with transparency for M+
   } = config;
 
   if (Array.isArray(config)) groups = config;
@@ -345,6 +347,12 @@ groupedSelect = (config = {}) => {
       option.selected = Array.isArray(formValue)
         ? formValue.includes(opt.value)
         : formValue === opt.value;
+      // Apply highlight background color based on which gender has higher participation
+      if (opt.highlight === "female") {
+        option.style.backgroundColor = highlightColorFemale;
+      } else if (opt.highlight === "male") {
+        option.style.backgroundColor = highlightColorMale;
+      }
       optgroup.appendChild(option);
     }
     select.appendChild(optgroup);

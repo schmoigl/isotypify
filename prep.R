@@ -120,7 +120,16 @@ data_clean <- data_long %>%
   filter(!kategorie %in% c(
     "Nicht näher bestimmte Zeitverwendung"
     )
-  )
+  ) %>%
+  # Calculate difference between women and men (Frauen - Männer)
+  group_by(kategorie, aktivitaet) %>%
+  mutate(
+    differenz_anteil = anteil_ausuebende_prozent[geschlecht == "Frauen"] -
+                       anteil_ausuebende_prozent[geschlecht == "Männer"],
+    differenz_zeit = durchschnittliche_zeit_h[geschlecht == "Frauen"] -
+                     durchschnittliche_zeit_h[geschlecht == "Männer"]
+  ) %>%
+  ungroup()
 
 # Display the cleaned data
 print(data_clean)
