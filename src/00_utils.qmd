@@ -422,8 +422,8 @@ shapeLookupAktivitaet = new Map([
 
 // Default fallback by gender
 shapeLookupDefault = new Map([
-  ["Frauen", "abcdefghilmnopq"],
-  ["Männer", "SBDEGHIJKLNOPRSTVWZ"],
+  ["Frauen", "abcdefghilmnopqB"],
+  ["Männer", "SDEGHIJKLNOPRSTVWZ"],
 ])
 
 // Helper function to get shapes - checks aktivitaet first, then kategorie, then default
