@@ -10,8 +10,11 @@ execute:
   include: true
 ---
 
+Zeit ist eine begrenzte Ressource – und sie ist ungleich verteilt. Die Zeitverwendungserhebung der Statistik Austria zeigt: Frauen leisten nach wie vor den Großteil der unbezahlten Arbeit in Österreich, während Männer mehr Zeit in Erwerbsarbeit verbringen. Diese unsichtbare Arbeit – Kochen, Putzen, Kinderbetreuung, Pflege – hält unsere Gesellschaft am Laufen, wird aber weder entlohnt noch in wirtschaftlichen Kennzahlen erfasst.
 
-Die Isolinien auf dieser Seite zeigen, wie Frauen und Männer in Österreich ihre Zeit verbringen. Jede Figur steht für eine Person von hundert – rot für Frauen, blau für Männer. Auf einen Blick wird sichtbar, wo die Unterschiede liegen: Wer arbeitet mehr im Haushalt? Wer verbringt mehr Zeit mit Kinderbetreuung? Wer ist länger erwerbstätig? Die Darstellung folgt der Tradition der Wiener Bildstatistik, die Marie Neurath und Otto Neurath in den 1920er Jahren am Gesellschafts- und Wirtschaftsmuseum entwickelt haben. Ihr Ziel: komplexe Daten für alle verständlich machen.
+Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für eine von hundert Personen: <span style="color: #c1272d; font-weight: bold;">rot</span> für Frauen, <span style="color: #1e3a5f; font-weight: bold;">blau</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen.
+
+<!-- Die Darstellung folgt der Tradition der Wiener Methode der Bildstatistik, die Otto Neurath und Marie Neurath in den 1920er Jahren entwickelt haben: Komplexe Zusammenhänge so darstellen, dass sie für alle verständlich werden. -->
 
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
@@ -160,22 +163,25 @@ viz_data = zeitverwendung.map(d => ({
 // Build groups from kategorie column, marking high gender differences
 aktivitaetGroups = {
   const grouped = d3.group(zeitverwendung, d => d.kategorie);
-  const threshold = 5; // percentage points
+  const thresholdAbs = 5;   // percentage points (absolute difference)
+  const thresholdRel = 50;  // percent (relative difference)
 
   return Array.from(grouped, ([kategorie, items]) => ({
     label: kategorie,
     options: [...new Set(items.map(d => d.aktivitaet))].map(aktivitaet => {
       // Get the first row for this activity (difference is the same for both genders)
       const row = items.find(d => d.aktivitaet === aktivitaet);
-      const diff = row?.differenz_anteil || 0;
-      const absDiff = Math.abs(diff);
+      const diffAbs = row?.differenz_anteil || 0;
+      const diffRel = row?.differenz_rel || 0;
+      const absDiffAbs = Math.abs(diffAbs);
+      const absDiffRel = Math.abs(diffRel);
 
-      // Mark as highlighted if difference exceeds threshold, with gender-specific value
+      // Mark as highlighted if absolute difference > 5pp OR relative difference >= 50%
       let highlight = null;
       let marker = "";
-      if (absDiff > threshold) {
-        highlight = diff > 0 ? "female" : "male";
-        marker = diff > 0 ? " (F+)" : " (M+)";
+      if (absDiffAbs > thresholdAbs || absDiffRel >= thresholdRel) {
+        highlight = diffAbs > 0 ? "female" : "male";
+        marker = diffAbs > 0 ? " (F+)" : " (M+)";
       }
 
       return {
@@ -209,7 +215,11 @@ selectedData = zeitverwendung.filter(d => d.aktivitaet === selectAktivitaet)
 frauenData = selectedData.find(d => d.geschlecht === "Frauen")
 maennerData = selectedData.find(d => d.geschlecht === "Männer")
 
-htl.html`${Math.round(frauenData?.anteil_ausuebende_prozent)}% aller Frauen geben an, in einer Woche Zeit mit <em>${selectAktivitaet}</em> zu verbringen. Frauen verbringen im Schnitt ${frauenData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden damit. Für Männer belaufen sich diese Zahlen auf ${Math.round(maennerData?.anteil_ausuebende_prozent)}% und ${maennerData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden.`
+// Calculate differences
+diffAbs = frauenData?.anteil_ausuebende_prozent - maennerData?.anteil_ausuebende_prozent
+diffRel = frauenData?.differenz_rel
+
+htl.html`<span style="color: #c1272d; font-weight: bold;">${Math.round(frauenData?.anteil_ausuebende_prozent)}%</span> aller <span style="color: #c1272d; font-weight: bold;">Frauen</span> geben an, in einer Woche Zeit mit <em>${selectAktivitaet}</em> zu verbringen. Frauen verbringen im Schnitt <span style="color: #c1272d; font-weight: bold;">${frauenData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden</span> damit. Für <span style="color: #1e3a5f; font-weight: bold;">Männer</span> belaufen sich diese Zahlen auf <span style="color: #1e3a5f; font-weight: bold;">${Math.round(maennerData?.anteil_ausuebende_prozent)}%</span> und <span style="color: #1e3a5f; font-weight: bold;">${maennerData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden</span>. Der Unterschied beträgt ${Math.abs(diffAbs).toFixed(1).replace('.', ',')} Prozentpunkte${diffAbs !== 0 ? ` (${diffAbs > 0 ? 'Frauen' : 'Männer'} häufiger)` : ''} bzw. ${Math.abs(diffRel).toFixed(0)}%.`
 ```
 
 <!-- All possible Icons:

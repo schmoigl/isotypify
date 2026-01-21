@@ -127,7 +127,15 @@ data_clean <- data_long %>%
     differenz_anteil = anteil_ausuebende_prozent[geschlecht == "Frauen"] -
                        anteil_ausuebende_prozent[geschlecht == "Männer"],
     differenz_zeit = durchschnittliche_zeit_h[geschlecht == "Frauen"] -
-                     durchschnittliche_zeit_h[geschlecht == "Männer"]
+                     durchschnittliche_zeit_h[geschlecht == "Männer"],
+    # Relative difference: (Frauen - Männer) / average * 100
+    # Using the average of both values as base to avoid division issues
+    differenz_rel = {
+      frauen_val <- anteil_ausuebende_prozent[geschlecht == "Frauen"]
+      maenner_val <- anteil_ausuebende_prozent[geschlecht == "Männer"]
+      avg_val <- (frauen_val + maenner_val) / 2
+      if_else(avg_val > 0, (frauen_val - maenner_val) / avg_val * 100, 0)
+    }
   ) %>%
   ungroup()
 
