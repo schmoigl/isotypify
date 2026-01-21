@@ -300,8 +300,8 @@ groupedSelect = (config = {}) => {
     multiple,
     size,
     groups,
-    highlightColorFemale = "rgba(255, 127, 80, 0.3)",  // coral with transparency for F+
-    highlightColorMale = "rgba(0, 128, 0, 0.3)"       // green with transparency for M+
+    highlightColorFemale = "#c1272d",
+    highlightColorMale = "#1e3a5f"
   } = config;
 
   if (Array.isArray(config)) groups = config;
