@@ -300,8 +300,8 @@ groupedSelect = (config = {}) => {
     multiple,
     size,
     groups,
-    highlightColorFemale = "#c1272d",
-    highlightColorMale = "#1e3a5f"
+    highlightColorFemale = "#c1272d80",
+    highlightColorMale = "#1e3a5f80"
   } = config;
 
   if (Array.isArray(config)) groups = config;
