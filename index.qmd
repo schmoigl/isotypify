@@ -196,7 +196,7 @@ aktivitaetGroups = {
 viewof selectAktivitaet = groupedSelect({
   value: "Erwerbstätigkeit - Gesamt",
   groups: aktivitaetGroups,
-  title: "Wählen sie eine Aktivität: "
+  title: "Wählen sie eine Aktivität: ​ "
 })
 
 isolines = makeIsoline({
@@ -217,7 +217,7 @@ diffRel = frauenData?.differenz_rel
 
 aktivitaetLabel = selectAktivitaet.replace(' - Gesamt', '')
 
-htl.html`<p style="margin: 0px;"><span style="color: #c1272d; font-weight: bold;">${Math.round(frauenData?.anteil_ausuebende_prozent)}%</span> aller <span style="color: #c1272d; font-weight: bold;">Frauen</span> geben an, in einer Woche Zeit mit <em>${aktivitaetLabel}</em> zu verbringen. Frauen verbringen im Schnitt <span style="color: #c1272d; font-weight: bold;">${frauenData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden</span> damit. Für <span style="color: #1e3a5f; font-weight: bold;">Männer</span> belaufen sich diese Zahlen auf <span style="color: #1e3a5f; font-weight: bold;">${Math.round(maennerData?.anteil_ausuebende_prozent)}%</span> und <span style="color: #1e3a5f; font-weight: bold;">${maennerData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden</span>. Der Unterschied beträgt ${Math.abs(diffAbs).toFixed(1).replace('.', ',')} Prozentpunkte${diffAbs !== 0 ? ` (${diffAbs > 0 ? 'Frauen' : 'Männer'} häufiger)` : ''} bzw. ${Math.abs(diffRel).toFixed(0)}%.</p>`
+htl.html`<p style="margin: 0px;"><span style="color: #c1272d; font-weight: bold;">${Math.round(frauenData?.anteil_ausuebende_prozent)}%</span> aller <span style="color: #c1272d; font-weight: bold;">Frauen</span> geben an, in einer Woche Zeit mit <strong>${aktivitaetLabel}</strong> zu verbringen. Frauen verbringen im Schnitt <span style="color: #c1272d; font-weight: bold;">${frauenData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden</span> damit. Für <span style="color: #1e3a5f; font-weight: bold;">Männer</span> belaufen sich diese Zahlen auf <span style="color: #1e3a5f; font-weight: bold;">${Math.round(maennerData?.anteil_ausuebende_prozent)}%</span> und <span style="color: #1e3a5f; font-weight: bold;">${maennerData?.zeit_ausuebende_h.toFixed(1).replace('.', ',')} Stunden</span>. Der Unterschied beträgt ${Math.abs(diffAbs).toFixed(1).replace('.', ',')} Prozentpunkte${diffAbs !== 0 ? ` (${diffAbs > 0 ? 'Frauen' : 'Männer'} häufiger)` : ''} bzw. ${Math.abs(diffRel).toFixed(0)}%.</p>`
 ```
 
 <p style="margin-top:12px">Datenquelle: [Statistik Austria – Zeitverwendung](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung)</p>

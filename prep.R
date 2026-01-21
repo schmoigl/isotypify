@@ -135,8 +135,16 @@ data_clean <- data_long %>%
       maenner_val <- anteil_ausuebende_prozent[geschlecht == "Männer"]
       avg_val <- (frauen_val + maenner_val) / 2
       if_else(avg_val > 0, (frauen_val - maenner_val) / avg_val * 100, 0)
-    }
+    },
+    # Sum of participation rates for filtering
+    summe_anteil = sum(anteil_ausuebende_prozent),
+    # Check if both genders are close to 100% (200 - sum < 4 means avg > 98%)
+    close_to_100 = (200 - summe_anteil) < 2
   ) %>%
+  # Remove activities where combined participation is below 4 percentage points
+  # OR where both genders are very close to 100% (less than 4pp away combined)
+  filter(summe_anteil >= 2, !close_to_100) %>%
+  select(-summe_anteil, -close_to_100) %>%
   ungroup()
 
 # Display the cleaned data
