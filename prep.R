@@ -5,7 +5,7 @@ library(tidyverse)
 # Load data from Tabelle_1 sheet in the ODS file
 data_raw <- read_ods(
   path = "data/Durchschnittliche_Zeitverwendung_2021-22.ods",
-  sheet = "Tabelle_1",
+  sheet = "Tabelle_16",
   skip = 3,  # Skip header rows
   col_types = NA  # Read all columns as character to prevent automatic type conversion
 )
@@ -52,20 +52,74 @@ data_long <- data_raw %>%
       },
       str_detect(wert, ",") ~ as.numeric(str_replace(wert, ",", ".")),
       TRUE ~ as.numeric(wert)
-    )
+    ),
+    # Replace NA values with 0
+    wert_numeric = replace_na(wert_numeric, 0)
   ) %>%
   # Remove rows with NA aktivitaet and filter to men and women only
   filter(!is.na(aktivitaet)) %>%
   filter(!str_starts(aktivitaet, "Q:")) %>%
   filter(geschlecht %in% c("Frauen", "Männer")) %>%
-  filter(!aktivitaet %in% c("Nicht näher bestimmte Zeitverwendung", "Soziale Kontakte und Freizeit", "Schlafen", "Essen und andere persönliche Tätigkeiten")) %>%
+  # filter(!aktivitaet %in% c(
+  #   "Nicht näher bestimmte Zeitverwendung", 
+  #   "Soziale Kontakte und Freizeit", 
+  #   "Schlafen", 
+  #   "Essen und andere persönliche Tätigkeiten"
+  # )) %>%
   select(aktivitaet, geschlecht, metrik, wert_numeric)
+  # group_by(aktivitaet)  %>%
+  # filter(!is.na(sum(wert_numeric)))
+
+# Define aggregated categories in order
+aggregated_categories <- c(
+  "Schlafen",
+  "Essen und andere persönliche Tätigkeiten",
+  "Erwerbstätigkeit",
+  "Aus- und Weiterbildung",
+  "Sorgearbeit in Haushalt und Familie",
+  "Freiwilligentätigkeiten",
+  "Soziale Kontakte und Freizeit",
+  "Nicht näher bestimmte Zeitverwendung"
+)
+
+# Get unique aktivitaet values in order of appearance
+aktivitaet_order <- data_long %>%
+  distinct(aktivitaet) %>%
+  pull(aktivitaet)
+
+# Create mapping: assign each aktivitaet to its parent kategorie
+# by finding which aggregated category came before it
+kategorie_map <- tibble(aktivitaet = aktivitaet_order) %>%
+  mutate(
+    is_aggregated = aktivitaet %in% aggregated_categories,
+    kategorie = NA_character_
+  )
+
+# Fill in the kategorie based on preceding aggregated category
+current_kategorie <- NA_character_
+for (i in seq_len(nrow(kategorie_map))) {
+  if (kategorie_map$is_aggregated[i]) {
+    current_kategorie <- kategorie_map$aktivitaet[i]
+  }
+  kategorie_map$kategorie[i] <- current_kategorie
+}
 
 # Keep in long format but pivot metrics wider for each activity-geschlecht combination
 data_clean <- data_long %>%
+  # Join to get kategorie
+
+  left_join(kategorie_map %>% select(aktivitaet, kategorie), by = "aktivitaet") %>%
+  # Remove rows where aktivitaet is an aggregated category (keep only sub-categories)
+  filter(!aktivitaet %in% aggregated_categories) %>%
   pivot_wider(
     names_from = metrik,
     values_from = wert_numeric
+  ) %>%
+  # Reorder columns
+  select(kategorie, aktivitaet, geschlecht, everything()) |>
+  filter(!kategorie %in% c(
+    "Nicht näher bestimmte Zeitverwendung"
+    )
   )
 
 # Display the cleaned data

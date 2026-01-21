@@ -89,8 +89,8 @@ makeIsoline = (params = {}) => {
     const vizSvg = html`
       <svg width="${vizWidth}" height="${height}">
         <g transform="translate(0, 80)">
-          ${people.map(
-            (p, i) => svg`
+          ${people.map((p, i) => ({ p, i })).reverse().map(
+            ({ p, i }) => svg`
             <g transform="translate(${i * cellWidth}, 0)">
               ${renderPersonCustom(p)}
             </g>`
@@ -139,74 +139,35 @@ zeitverwendung = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true
 ```
 
 ```{ojs}
-// Define shape lookup table by activity and gender
-shapeLookup = new Map([
-  // Erwerbstätigkeit
-  ["Erwerbstätigkeit_Frauen", "coilmnpq>"],
-  ["Erwerbstätigkeit_Männer", "PTJWXY<"],
-
-  // Aus- und Weiterbildung
-  ["Aus- und Weiterbildung_Frauen", "Bh"],
-  ["Aus- und Weiterbildung_Männer", "AHD"],
-
-  // Sorgearbeit in Haushalt und Familie
-  ["Sorgearbeit in Haushalt und Familie_Frauen", "a1a6a2a7a3a8"],
-  ["Sorgearbeit in Haushalt und Familie_Männer", "G1G6G2G7G3G8"],
-
-  // Freiwilligentätigkeiten
-  ["Freiwilligentätigkeiten_Frauen", "i"],
-  ["Freiwilligentätigkeiten_Männer", "L"],
-
-  // Soziales Leben und Unterhaltung
-  ["Soziales Leben und Unterhaltung_Frauen", "e"],
-  ["Soziales Leben und Unterhaltung_Männer", "E"],
-
-  // Sport, Hobby und andere Freizeitaktivitäten
-  ["Sport, Hobby und andere Freizeitaktivitäten_Frauen", "f"],
-  ["Sport, Hobby und andere Freizeitaktivitäten_Männer", "F"],
-
-  // Massenmedien
-  ["Massenmedien_Frauen", "g"],
-  ["Massenmedien_Männer", "G"],
-
-  // Fortbewegung, Mobilität
-  ["Fortbewegung, Mobilität_Frauen", "h"],
-  ["Fortbewegung, Mobilität_Männer", "H"],
-
-  // Nicht näher bestimmte Zeitverwendung
-  ["Nicht näher bestimmte Zeitverwendung_Frauen", "i"],
-  ["Nicht näher bestimmte Zeitverwendung_Männer", "I"],
-
-  // Default fallback
-  ["Frauen", "abcdefghilmnopq"],
-  ["Männer", "SBDEGHIJKLNOPRSTVWZ"],
-])
-
-// Helper function to get shapes
-getShapes = (aktivitaet, geschlecht) => {
-  const key = `${aktivitaet}_${geschlecht}`;
-  return shapeLookup.get(key) || shapeLookup.get(geschlecht) || "abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ";
-}
-```
-
-```{ojs}
 // Prepare all data for visualization
 viz_data = zeitverwendung.map(d => ({
   key: d.aktivitaet,
   subkey: d.geschlecht,
   geschlecht: d.geschlecht,
   value: d.anteil_ausuebende_prozent / 100,
-  shapes: getShapes(d.aktivitaet, d.geschlecht),
+  shapes: getShapes(d.aktivitaet, d.kategorie, d.geschlecht),
   fillHighlight: d.geschlecht === "Frauen" ? "coral" : "green",
   fillNormal: d.geschlecht === "Frauen" ? "#eee" : "#ddd"
 }))
 ```
 
 ```{ojs}
-viewof selectAktivitaet = Inputs.select(
-  [... new Set(viz_data.map(d => d.key))], 
-  {label: "Aktivität"}
-  )
+// Build groups from kategorie column
+aktivitaetGroups = {
+  const grouped = d3.group(zeitverwendung, d => d.kategorie);
+  return Array.from(grouped, ([kategorie, items]) => ({
+    label: kategorie,
+    options: [...new Set(items.map(d => d.aktivitaet))].map(a => ({
+      value: a,
+      label: a
+    }))
+  }));
+}
+
+viewof selectAktivitaet = groupedSelect({
+  value: zeitverwendung[0]?.aktivitaet,
+  groups: aktivitaetGroups
+})
 
 isolines = makeIsoline({
   data: viz_data.filter(d => d.key == selectAktivitaet),
@@ -218,7 +179,8 @@ isolines = makeIsoline({
 ```
 
 
-All possible Icons:
+
+<!-- All possible Icons:
 
 <p class="testIcons">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
 
@@ -232,4 +194,4 @@ All possible Icons:
 
 <p class="testIcons">©®§°</p>
 
-<p class="testIcons">ÀÁÂÃÄÅÆÇÈ</p>
+<p class="testIcons">ÀÁÂÃÄÅÆÇÈ</p> -->
