@@ -1,5 +1,8 @@
 /*-- scss:defaults --*/
-$font-family-sans-serif: "League Spartan";
+$font-family-sans-serif: "DM Sans";
+$font-weight-base: 280;
+$headings-font-family: "DM Sans";
+$headings-font-weight: 600;
 $logo1-url: 'img/fuzzy-logo-small.svg';
 $logo2-url: 'img/logo-100.svg';
 $logo-width: 150px;
@@ -17,15 +20,117 @@ $link-color: $color-frauen;
 }
 
 @font-face {
-    font-family: 'League Spartan';
-    src: url('style/LeagueSpartan-VariableFont_wght.ttf') format('truetype');
+    font-family: 'DM Sans';
+    src: url('style/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'DM Sans';
+    src: url('style/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+}
+
 form, output {
-    font-family: "League Spartan" !important;
-    font-size: 15px !important;  
+    font-family: "DM Sans" !important;
+    font-weight: 280 !important;
+    font-size: 18px !important;
+    overflow: visible !important;
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    top: -2px;
+
+    @media (max-width: 1200px) {
+        display: block;
+        width: 100%;
+
+        select {
+            width: 100%;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 24px;
+        bottom: -2px;
+        height: 8px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 4 Q 5 0, 10 4 T 20 4' stroke='%23c1272d' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+        background-repeat: repeat-x;
+        background-size: 14px 6px;
+        pointer-events: none;
+    }
+
+    // Cover to hide scrollbar on right side
+    &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        background: white;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none !important;
+        border-radius: 0 !important;
+        background-color: transparent;
+        box-shadow: none !important;
+        cursor: pointer;
+        padding: 4px 40px 4px 0;
+        margin-right: -20px;
+        font-size: 18px;
+        line-height: 1.2;
+
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    // Custom dropdown arrow positioned over the cover
+    .select-arrow {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        z-index: 2;
+    }
+}
+
+// Global select override for Observable/Quarto - hide scrollbar
+.observablehq select,
+.cell-output select,
+.select-wrapper select {
+    overflow: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+
+    &::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+    }
 }
 
 .testIcons {
@@ -50,7 +155,7 @@ form, output {
     justify-content: center;
     color: #111;
     font-family: sans-serif;
-    font-weight: bold;
+
     font-size: 18px;
     transform: translateY(30px)
 }

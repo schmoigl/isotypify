@@ -12,9 +12,7 @@ execute:
 
 Zeit ist eine begrenzte Ressource – und sie ist ungleich verteilt. Die Zeitverwendungserhebung der Statistik Austria zeigt: Frauen leisten nach wie vor den Großteil der unbezahlten Arbeit in Österreich, während Männer mehr Zeit in Erwerbsarbeit verbringen. Diese unsichtbare Arbeit – Kochen, Putzen, Kinderbetreuung, Pflege – hält unsere Gesellschaft am Laufen, wird aber weder entlohnt noch in wirtschaftlichen Kennzahlen erfasst.
 
-Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für eine von hundert Personen: <span style="color: #c1272d; font-weight: bold;">rot</span> für Frauen, <span style="color: #1e3a5f; font-weight: bold;">blau</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen. 
-
-<!-- Die Darstellung folgt der Tradition der Wiener Methode der Bildstatistik, die Otto Neurath und Marie Neurath in den 1920er Jahren entwickelt haben: Komplexe Zusammenhänge so darstellen, dass sie für alle verständlich werden. -->
+Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für rund zwei von hundert Personen: <span style="color: #c1272d; font-weight: bold;">rot</span> für Frauen, <span style="color: #1e3a5f; font-weight: bold;">blau</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen. 
 
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
@@ -108,7 +106,7 @@ makeIsoline = (params = {}) => {
 
     // Create the percentage span
     const percentageText = html`
-      <span style="color: ${fillHighlight}; font-family: League Spartan;">
+      <span style="color: ${fillHighlight}; font-family: DM Sans; font-weight: 280;">
         ${Math.round(highlightValue * 100)} von 100 ${subkey}
       </span>
     `;
@@ -116,8 +114,8 @@ makeIsoline = (params = {}) => {
     // Return row with label
     return html`
       <div style="margin-bottom: 6px;">
-        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: League Spartan; margin: 0 0 12px 0;">${group.key}</h3>` : html``}
-        ${!groupByKey ? html`<h3 style="font-family: League Spartan; margin: 0 0 12px 0;">${item.key}</h3>` : html``}
+        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: DM Sans; font-weight: 500; margin: 0 0 12px 0;">${group.key}</h3>` : html``}
+        ${!groupByKey ? html`<h3 style="font-family: DM Sans; font-weight: 500; margin: 0 0 12px 0;">${item.key}</h3>` : html``}
         ${percentageText}
         ${vizSvg}
       </div>
@@ -134,7 +132,7 @@ makeIsoline = (params = {}) => {
 
   // Return all rows in a container
   return html`
-    <div style="margin: 16px 0 0 0">
+    <div style="margin: 0px 0 0 0">
       ${rows}
     </div>
   `;
@@ -198,10 +196,14 @@ viewof selectAktivitaet = groupedSelect({
   groups: aktivitaetGroups,
   title: "Wählen sie eine Aktivität: ​ "
 })
+```
 
+---
+
+```{ojs}
 isolines = makeIsoline({
   data: viz_data.filter(d => d.key == selectAktivitaet),
-  persPerLineValue: 40,
+  persPerLineValue: 50,
   cellWidth: 24,
   randomOrder: false,  // Set to true for random order, false for sequential
   groupByKey: true     // Set to true to group subkeys (gender) under each key (activity)
@@ -237,3 +239,10 @@ htl.html`<p style="margin: 0px;"><span style="color: #c1272d; font-weight: bold;
 <p class="testIcons">©®§°</p>
 
 <p class="testIcons">ÀÁÂÃÄÅÆÇÈ</p> -->
+
+---
+
+<h4>Danksagung</h4>
+
+- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart)
+- Isotype Font von [Ric Stephens](https://www.dafont.com/isotype.font)

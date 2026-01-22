@@ -317,21 +317,13 @@ groupedSelect = (config = {}) => {
     });
   });
 
-  // Build select element
+  // Build select element with wrapper for wavy underline
+  const selectWrapper = document.createElement('span');
+  selectWrapper.className = 'select-wrapper';
+
   const select = document.createElement('select');
-  select.style.cssText = `
-    font-size: 18px;
-    padding: 4px 24px 4px 0;
-    border: none;
-    border-bottom: 1px solid black;
-    border-radius: 0;
-    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right center;
-    outline: none;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  `;
+  select.setAttribute('size', '1');
+  select.style.overflow = 'hidden';
 
   for (const group of groups) {
     const optgroup = document.createElement('optgroup');
@@ -357,17 +349,26 @@ groupedSelect = (config = {}) => {
     select.appendChild(optgroup);
   }
 
-  const form = html`<form style="font-family: League Spartan;"></form>`;
+  const form = html`<form style="font-family: DM Sans; font-weight: 280;"></form>`;
+
+  // Wrap select in wrapper for wavy underline styling
+  selectWrapper.appendChild(select);
+
+  // Add custom dropdown arrow
+  const arrow = document.createElement('span');
+  arrow.className = 'select-arrow';
+  arrow.innerHTML = '&#9662;'; // Down triangle
+  selectWrapper.appendChild(arrow);
 
   // Add title/label if provided
   if (title) {
     const label = document.createElement('label');
     label.textContent = title + ' ';
     label.style.cssText = 'margin-right: 8px; font-size: 18px;';
-    label.appendChild(select);
+    label.appendChild(selectWrapper);
     form.appendChild(label);
   } else {
-    form.appendChild(select);
+    form.appendChild(selectWrapper);
   }
 
   form.value = formValue || groups[0]?.options[0]?.value;
