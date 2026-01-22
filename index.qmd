@@ -244,5 +244,5 @@ htl.html`<p style="margin: 0px;"><span style="color: #c1272d; font-weight: bold;
 
 <h3>Danksagung</h3>
 
-- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart)
-- Isotype Font von [Ric Stephens](https://www.dafont.com/isotype.font)
+- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
+- Isotype Font von [Ric Stephens](https://www.dafont.com/isotype.font){target="_blank"}
