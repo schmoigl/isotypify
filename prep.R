@@ -54,7 +54,7 @@ data_long <- data_raw %>%
       TRUE ~ as.numeric(wert)
     ),
     # Replace NA values with 0
-    wert_numeric = replace_na(wert_numeric, 0)
+    # wert_numeric = replace_na(wert_numeric, 0)
   ) %>%
   # Remove rows with NA aktivitaet and filter to men and women only
   filter(!is.na(aktivitaet)) %>%
@@ -143,7 +143,8 @@ data_clean <- data_long %>%
   ) %>%
   # Remove activities where combined participation is below 4 percentage points
   # OR where both genders are very close to 100% (less than 4pp away combined)
-  filter(summe_anteil >= 2, !close_to_100) %>%
+  # filter(summe_anteil >= 2, !close_to_100) %>%
+  filter(!is.na(summe_anteil)) %>%
   select(-summe_anteil, -close_to_100) %>%
   ungroup()
 

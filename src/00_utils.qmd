@@ -349,6 +349,8 @@ groupedSelect = (config = {}) => {
         option.style.backgroundColor = highlightColorFemale;
       } else if (opt.highlight === "male") {
         option.style.backgroundColor = highlightColorMale;
+      } else {
+        option.style.backgroundColor = "white";
       }
       optgroup.appendChild(option);
     }
@@ -385,32 +387,32 @@ groupedSelect = (config = {}) => {
 
 shapeLookupKategorie = new Map([
   // Essen und andere persönliche Tätigkeiten
-  ["Essen und andere persönliche Tätigkeiten_Frauen", "abcdefghilmnopq"],
-  ["Essen und andere persönliche Tätigkeiten_Männer", "SBDEGHIJKLNOPRSTVWZ"],
+  ["Essen und andere persönliche Tätigkeiten_Frauen", "echadfba"],
+  ["Essen und andere persönliche Tätigkeiten_Männer", "REGATNGH"],
 
   // Erwerbstätigkeit
   ["Erwerbstätigkeit_Frauen", "coilmnpq>"],
-  ["Erwerbstätigkeit_Männer", "PTJWXY<"],
+  ["Erwerbstätigkeit_Männer", "PTJFWY<"],
 
   // Aus- und Weiterbildung
-  ["Aus- und Weiterbildung_Frauen", "Bh"],
-  ["Aus- und Weiterbildung_Männer", "AHD"],
+  ["Aus- und Weiterbildung_Frauen", "Bhapb"],
+  ["Aus- und Weiterbildung_Männer", "AHDG"],
 
   // Sorgearbeit in Haushalt und Familie
-  ["Sorgearbeit in Haushalt und Familie_Frauen", "a1a6a2a7a3a8"],
-  ["Sorgearbeit in Haushalt und Familie_Männer", "G1G6G2G7G3G8"],
+  ["Sorgearbeit in Haushalt und Familie_Frauen", "a27b1b14bba2a6"],
+  ["Sorgearbeit in Haushalt und Familie_Männer", "G1J26PJ2G7P3G86"],
 
   // Freiwilligentätigkeiten
-  ["Freiwilligentätigkeiten_Frauen", "i"],
-  ["Freiwilligentätigkeiten_Männer", "L"],
+  ["Freiwilligentätigkeiten_Frauen", "jiab"],
+  ["Freiwilligentätigkeiten_Männer", "LGPGU"],
 
   // Soziale Kontakte und Freizeit
-  ["Soziale Kontakte und Freizeit_Frauen", "e"],
-  ["Soziale Kontakte und Freizeit_Männer", "E"],
+  ["Soziale Kontakte und Freizeit_Frauen", "echadfbagB"],
+  ["Soziale Kontakte und Freizeit_Männer", "REGZATINGH"],
 
   // Nicht näher bestimmte Zeitverwendung
-  ["Nicht näher bestimmte Zeitverwendung_Frauen", "i"],
-  ["Nicht näher bestimmte Zeitverwendung_Männer", "I"],
+  ["Nicht näher bestimmte Zeitverwendung_Frauen", "abcdefghilmnopqB"],
+  ["Nicht näher bestimmte Zeitverwendung_Männer", "SDEGHIJKLNOPRSTVWZ"],
 ])
 
 // Override shapes at aktivitaet level (optional - add specific activities here)
