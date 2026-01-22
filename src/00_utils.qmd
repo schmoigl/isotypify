@@ -320,7 +320,7 @@ groupedSelect = (config = {}) => {
   // Build select element
   const select = document.createElement('select');
   select.style.cssText = `
-    font-size: 14px;
+    font-size: 18px;
     padding: 4px 24px 4px 0;
     border: none;
     border-bottom: 1px solid black;
@@ -357,13 +357,13 @@ groupedSelect = (config = {}) => {
     select.appendChild(optgroup);
   }
 
-  const form = html`<form style="font-family: Jost;"></form>`;
+  const form = html`<form style="font-family: League Spartan;"></form>`;
 
   // Add title/label if provided
   if (title) {
     const label = document.createElement('label');
     label.textContent = title + ' ';
-    label.style.cssText = 'margin-right: 8px;';
+    label.style.cssText = 'margin-right: 8px; font-size: 18px;';
     label.appendChild(select);
     form.appendChild(label);
   } else {
@@ -404,7 +404,7 @@ shapeLookupKategorie = new Map([
 
   // Freiwilligentätigkeiten
   ["Freiwilligentätigkeiten_Frauen", "jiab"],
-  ["Freiwilligentätigkeiten_Männer", "LGPGU"],
+  ["Freiwilligentätigkeiten_Männer", "LGPGUPL"],
 
   // Soziale Kontakte und Freizeit
   ["Soziale Kontakte und Freizeit_Frauen", "echadfbagB"],

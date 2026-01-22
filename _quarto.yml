@@ -22,5 +22,5 @@ format:
       gutter-width: 8px
     toc: false
     page-layout: article
-    fontsize: 15px
+    fontsize: 18px
     anchor-sections: false

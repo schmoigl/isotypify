@@ -1,20 +1,30 @@
 /*-- scss:defaults --*/
-$font-family-sans-serif: "Jost";
+$font-family-sans-serif: "League Spartan";
 $logo1-url: 'img/fuzzy-logo-small.svg';
 $logo2-url: 'img/logo-100.svg';
 $logo-width: 150px;
 $logo-height: 40px;
 $animation-duration: 0.7s;
 $color-frauen: #c1272d;
-$link-color: $color-frauen;   
-
+$link-color: $color-frauen;
 
 /*-- scss:rules --*/
-@import url('https://fonts.cdnfonts.com/css/isotype');
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: 'Isotype';
+    src: url('style/Retro Isotype.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'League Spartan';
+    src: url('style/LeagueSpartan-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
 
 form, output {
-    font-family: "Jost" !important;
+    font-family: "League Spartan" !important;
     font-size: 15px !important;  
 }
 
