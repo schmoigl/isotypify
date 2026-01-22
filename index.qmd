@@ -12,7 +12,7 @@ execute:
 
 Zeit ist eine begrenzte Ressource – und sie ist ungleich verteilt. Die Zeitverwendungserhebung der Statistik Austria zeigt: Frauen leisten nach wie vor den Großteil der unbezahlten Arbeit in Österreich, während Männer mehr Zeit in Erwerbsarbeit verbringen. Diese unsichtbare Arbeit – Kochen, Putzen, Kinderbetreuung, Pflege – hält unsere Gesellschaft am Laufen, wird aber weder entlohnt noch in wirtschaftlichen Kennzahlen erfasst.
 
-Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für rund zwei von hundert Personen: <span style="color: #c1272d; font-weight: bold;">rot</span> für Frauen, <span style="color: #1e3a5f; font-weight: bold;">blau</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen. 
+Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für rund `{ojs} width > 1200 ? "zwei" : width > 800 ? "vier" : "zehn"`  von hundert Personen: <span style="color: #c1272d; font-weight: bold;">rot</span> für Frauen, <span style="color: #1e3a5f; font-weight: bold;">blau</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen. 
 
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
@@ -106,7 +106,7 @@ makeIsoline = (params = {}) => {
 
     // Create the percentage span
     const percentageText = html`
-      <span style="color: ${fillHighlight}; font-family: DM Sans; font-weight: 280;">
+      <span style="color: ${fillHighlight}; font-family: DM Sans; font-weight: 300;">
         ${Math.round(highlightValue * 100)} von 100 ${subkey}
       </span>
     `;
@@ -203,8 +203,8 @@ viewof selectAktivitaet = groupedSelect({
 ```{ojs}
 isolines = makeIsoline({
   data: viz_data.filter(d => d.key == selectAktivitaet),
-  persPerLineValue: 50,
-  cellWidth: 24,
+  persPerLineValue: width > 1200 ? 50 : width > 800 ? 25 : 10,
+  cellWidth: width > 1200 ? 24 : 24,
   randomOrder: false,  // Set to true for random order, false for sequential
   groupByKey: true     // Set to true to group subkeys (gender) under each key (activity)
 })
