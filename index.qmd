@@ -204,7 +204,7 @@ viewof selectAktivitaet = groupedSelect({
 isolines = makeIsoline({
   data: viz_data.filter(d => d.key == selectAktivitaet),
   persPerLineValue: width > 1200 ? 50 : width > 600 ? 25 : 10,
-  cellWidth: width > 1200 ? 24 : width > 600 ? 24 : 28,
+  cellWidth: width > 1200 ? 23 : width > 600 ? 23 : 28,
   randomOrder: false,  // Set to true for random order, false for sequential
   groupByKey: true     // Set to true to group subkeys (gender) under each key (activity)
 })
