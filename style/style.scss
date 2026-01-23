@@ -40,6 +40,10 @@ form, output {
     overflow: visible !important;
 }
 
+.cell-output-display {
+    overflow: hidden !important;
+}
+
 .select-wrapper {
     position: relative;
     display: inline-block;

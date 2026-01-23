@@ -19,7 +19,7 @@ format:
     grid:
       body-width: 1200px
       margin-width: 380px
-      gutter-width: 8px
+      gutter-width: 12px
     toc: false
     page-layout: article
     fontsize: 18px
