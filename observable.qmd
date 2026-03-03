@@ -10,13 +10,37 @@ execute:
   Paste each {ojs} block as one cell in ObservableHQ (observablehq.com).
   Paste from top to bottom — Observable resolves dependencies reactively.
   The first cell (fonts/styles) should be pasted as an HTML cell (click + → HTML).
+  The markdown below should be pasted as a markdown cell at the top of the notebook.
 -->
+
+## Intro (paste as markdown cell)
+
+```markdown
+# Isotypify Your Life
+
+In the 1920s, Otto Neurath had a radical idea: what if statistics looked like *people* instead of bars?
+His [ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_%28picture_language%29) turned dry numbers into rows of little figures — intuitive, democratic, human.
+
+This notebook revives that idea to visualize something stubbornly invisible: **who does what, and for how long**.
+
+Using Austria's national time-use survey ([Statistik Austria, 2021–22](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung)),
+each figure below represents roughly 2–10 out of every 100 people (depending on screen size 2, 5 or 10).
+<span style="color:#c1272d; font-weight:600;">Red</span> for women,
+<span style="color:#1e3a5f; font-weight:600;">blue</span> for men.
+Activities marked **(F+)** or **(M+)** in the dropdown show the largest gender gaps.
+
+The picture that emerges is familiar — and still worth seeing.
+
+---
+
+*Inspired by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart). Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font).*
+```
 
 ## Fonts & Styles
 
 ```{ojs}
 html`<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
 @font-face {
   font-family: 'Isotype';
@@ -24,6 +48,31 @@ html`<style>
   font-weight: normal;
   font-style: normal;
 }
+
+/* Global font override for Observable's notebook cells */
+.observablehq,
+.observablehq p,
+.observablehq h1,
+.observablehq h2,
+.observablehq h3,
+.observablehq h4,
+.observablehq h5,
+.observablehq h6,
+.observablehq label,
+.observablehq form,
+.observablehq select,
+.observablehq option,
+.observablehq optgroup,
+.observablehq input,
+.observablehq button,
+.observablehq span,
+.observablehq div {
+  font-family: 'Jost', sans-serif !important;
+}
+
+.observablehq h1 { font-weight: 700; }
+.observablehq h2, .observablehq h3 { font-weight: 600; }
+.observablehq p, .observablehq label { font-weight: 300; font-size: 18px; text-align: justify; }
 
 .select-wrapper {
   position: relative;
@@ -84,6 +133,12 @@ html`<style>
 .observablehq select {
   overflow: hidden !important;
   scrollbar-width: none !important;
+}
+.select-wrapper {
+  max-width: 400px;
+}
+.select-wrapper select {
+  max-width: 400px;
 }
 </style>`
 ```
@@ -317,7 +372,7 @@ groupedSelect = (config = {}) => {
     select.appendChild(optgroup);
   }
 
-  const form = html`<form style="font-family: DM Sans; font-weight: 280;"></form>`;
+  const form = html`<form style="font-family: Jost; font-weight: 280;"></form>`;
 
   selectWrapper.appendChild(select);
 
@@ -347,22 +402,73 @@ groupedSelect = (config = {}) => {
 }
 ```
 
-## makeIsoline
+## makeIsoline (paste as markdown cell)
+
+```markdown
+## `makeIsoline(params)`
+
+Renders an ISOTYPE-style figure grid. Each row shows a population of figures,
+with a share of them highlighted to represent a percentage.
+
+| Parameter | Default | Description |
+|---|---|---|
+| `data` | — | Array of row objects (see below) |
+| `vizWidth` | `width` | Total SVG width in px — use Observable's reactive `width` to make it responsive |
+| `cellWidth` | `18` | Horizontal space per figure in px — smaller = more figures per row, denser packing |
+| `cellHeight` | `100` | Row height in px |
+| `personHeight` | `100` | Isotype glyph font-size in px — effectively the figure height |
+| `persPerLineValue` | `floor(vizWidth / cellWidth) - 1` | Figures per row — this is your "N per 100" denominator |
+| `defaultShapes` | `"abcdefg…"` | Fallback glyph pool from the Isotype font; overridden per row by `shapes` |
+| `defaultFillHighlight` | `"steelblue"` | Fallback highlight color; overridden per row by `fillHighlight` |
+| `defaultFillNormal` | `"#ddd"` | Fallback background color; overridden per row by `fillNormal` |
+| `randomOrder` | `true` | `true`: scatter highlighted figures via MD5 hash; `false`: pack left-to-right |
+| `groupByKey` | `false` | `true`: rows sharing the same `key` are grouped under one heading |
+
+**Each `data` row object:**
+
+| Field | Required | Description |
+|---|---|---|
+| `key` | ✓ | Row label / group heading |
+| `value` | ✓ | Share to highlight, between `0` and `1` |
+| `subkey` | — | Label shown in "X von 100 **subkey**"; defaults to `"Personen"` |
+| `shapes` | — | String of Isotype font glyphs to use for this row |
+| `fillHighlight` | — | Color for highlighted figures |
+| `fillNormal` | — | Color for background figures |
+
+**Minimal example:**
+
+```js
+makeIsoline({
+  persPerLineValue: 20,
+  data: [
+    {
+      key: "Women",
+      value: 0.75,
+      shapes: "abcdefg",
+      fillHighlight: "#c1272d",
+      fillNormal: "#e8d5d5"
+    }
+  ]
+})
+\```
+```
+
+## makeIsoline (code cell)
 
 ```{ojs}
 makeIsoline = (params = {}) => {
   const {
-    data = null,
-    vizWidth = width,
-    cellWidth = 18,
-    cellHeight = 100,
-    personHeight = 100,
-    persPerLineValue = Math.floor(vizWidth / cellWidth) - 1,
-    defaultShapes = "abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ",
-    defaultFillHighlight = "steelblue",
-    defaultFillNormal = "#ddd",
-    randomOrder = true,
-    groupByKey = false
+    data = null,              // array of row objects: { key, value (0-1), subkey?, shapes?, fillHighlight?, fillNormal? }
+    vizWidth = width,         // total SVG width in px; defaults to Observable's reactive viewport width
+    cellWidth = 18,           // horizontal space per figure in px — controls packing density
+    cellHeight = 100,         // row height in px
+    personHeight = 100,       // Isotype glyph font-size in px — effectively the figure height
+    persPerLineValue = Math.floor(vizWidth / cellWidth) - 1, // figures per row; determines the "N per 100" scale
+    defaultShapes = "abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ", // fallback glyph pool from the Isotype font; per-row shapes override this
+    defaultFillHighlight = "steelblue", // fallback color for highlighted (active) figures; per-row fillHighlight overrides this
+    defaultFillNormal = "#ddd",         // fallback color for non-highlighted figures; per-row fillNormal overrides this
+    randomOrder = true,  // true: scatter highlighted figures via MD5 hash; false: pack them left-to-right
+    groupByKey = false   // true: rows sharing the same key are grouped under one <h3>; false: each row gets its own <h3>
   } = params;
 
   const dataGroups = groupByKey
@@ -412,17 +518,17 @@ makeIsoline = (params = {}) => {
         </svg>`;
 
       const percentageText = html`
-        <span style="color: ${fillHighlight}; font-family: DM Sans; font-weight: 280;">
+        <span style="color: ${fillHighlight}; font-family: Jost; font-weight: 280;">
           ${Math.round(highlightValue * 100)} von 100 ${subkey}
         </span>`;
 
       return html`
         <div style="margin-bottom: 6px;">
           ${groupByKey && rowIndex === 0
-            ? html`<h3 style="font-family: DM Sans; font-weight: 600; margin: 0 0 12px 0;">${group.key}</h3>`
+            ? html`<h3 style="font-family: Jost; font-weight: 600; margin: 0 0 12px 0;">${group.key}</h3>`
             : html``}
           ${!groupByKey
-            ? html`<h3 style="font-family: DM Sans; font-weight: 600; margin: 0 0 12px 0;">${item.key}</h3>`
+            ? html`<h3 style="font-family: Jost; font-weight: 600; margin: 0 0 12px 0;">${item.key}</h3>`
             : html``}
           ${percentageText}
           ${vizSvg}
