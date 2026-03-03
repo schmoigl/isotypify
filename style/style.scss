@@ -3,11 +3,6 @@ $font-family-sans-serif: "DM Sans";
 $font-weight-base: 280;
 $headings-font-family: "DM Sans";
 $headings-font-weight: 600;
-$logo1-url: 'img/fuzzy-logo-small.svg';
-$logo2-url: 'img/logo-100.svg';
-$logo-width: 150px;
-$logo-height: 40px;
-$animation-duration: 0.7s;
 $color-frauen: #c1272d;
 $link-color: $color-frauen;
 
@@ -134,105 +129,5 @@ form, output {
         width: 0 !important;
         height: 0 !important;
         background: transparent !important;
-    }
-}
-
-.testIcons {
-    font-family: "Isotype";
-    font-size: 72px;
-}
-
-#bar {
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-.children {
-    height: 10px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #fff;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111;
-    font-family: sans-serif;
-
-    font-size: 18px;
-    transform: translateY(30px)
-}
-
-/* quarto */
-// pre, code, .callout, .sourceCode { // comment out until final deployment
-//     display: none;
-// }
-
-.navbar {
-    height: 3.75rem;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    border-top: 0;
-    border-bottom: .0625rem solid #000;
-    background-color: #fff;
-
-    .menu-text {
-        color: #000;
-    }
-}
-
-/* logo */
-.logo-footer {
-    height: 30px;
-}
-
-.navbar-brand-logo {
-    position: relative;
-    display: inline-block;
-    width: $logo-width;
-    height: $logo-height;
-    vertical-align: middle;
-    perspective: 1000px;
-
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-        transition: transform $animation-duration ease-in-out, opacity $animation-duration ease-in-out;
-        backface-visibility: hidden;
-    }
-
-    &::before {
-        background-image: url($logo1-url);
-        transform: rotateY(0deg);
-        opacity: 1;
-        z-index: 2;
-    }
-
-    &::after {
-        background-image: url($logo2-url);
-        transform: rotateY(180deg);
-        opacity: 0;
-        z-index: 1;
-    }
-
-    &:hover {
-        &::before {
-        transform: rotateY(-180deg);
-        opacity: 0;
-        }
-
-        &::after {
-        transform: rotateY(0deg);
-        opacity: 1;
-        }
     }
 }

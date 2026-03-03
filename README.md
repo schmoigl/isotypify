@@ -32,8 +32,7 @@ makeIsoline({
 - **[Quarto](https://quarto.org/)** - Publishing system with [Observable JS](https://quarto.org/docs/interactive/ojs/) integration
 - **[D3.js](https://d3js.org/)** - Data visualization
 - **[Isotype Font](https://fonts.cdnfonts.com/isotype.font)** - 234+ pictographic glyphs
-- **[DM Sans Font](https://fonts.google.com/specimen/League+Spartan)** - Headings (Medium weight)
-- **[Poppins Font](https://fonts.google.com/specimen/Poppins)** - Body text (Extra Light weight)
+- **[DM Sans Font](https://fonts.google.com/specimen/DM+Sans)** - Headings and body text
 
 ## Resources
 
