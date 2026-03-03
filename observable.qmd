@@ -135,10 +135,10 @@ html`<style>
   scrollbar-width: none !important;
 }
 .select-wrapper {
-  max-width: 400px;
+  max-width: 560px;
 }
 .select-wrapper select {
-  max-width: 400px;
+  max-width: 560px;
 }
 </style>`
 ```
