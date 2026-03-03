@@ -1,5 +1,6 @@
 # folders
 .vscode/
+deploy.sh
 website/
 site_libs/
 keys/
