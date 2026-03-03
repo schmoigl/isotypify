@@ -1,0 +1,221 @@
+category,activity,gender,avg_hours,participation_pct,participant_hours,diff_participation,diff_hours,diff_relative
+Schlafen,Schlafen - Gesamt,women,8.866666666666667,100,8.866666666666667,0,0.09999999999999964,0
+Schlafen,Schlafen - Gesamt,men,8.766666666666667,100,8.766666666666667,0,0.09999999999999964,0
+Schlafen,Schlafen (gesund),women,8.833333333333334,100,8.833333333333334,0,0.10000000000000142,0
+Schlafen,Schlafen (gesund),men,8.733333333333333,100,8.733333333333333,0,0.10000000000000142,0
+Schlafen,Im Bett wegen Krankheit,women,0.016666666666666666,1.4,3.533333333333333,-0.10000000000000009,-0.016666666666666666,-6.896551724137938
+Schlafen,Im Bett wegen Krankheit,men,0.03333333333333333,1.5,4.266666666666667,-0.10000000000000009,-0.016666666666666666,-6.896551724137938
+Essen und andere persönliche Tätigkeiten,Essen und Trinken,women,1.7166666666666668,99.4,1.7833333333333332,0.20000000000000284,0.01666666666666683,0.2014098690835879
+Essen und andere persönliche Tätigkeiten,Essen und Trinken,men,1.7,99.2,1.7833333333333332,0.20000000000000284,0.01666666666666683,0.2014098690835879
+Essen und andere persönliche Tätigkeiten,Waschen und Anziehen,women,0.8666666666666667,94,0.9833333333333333,2.4000000000000057,0.18333333333333335,2.5862068965517304
+Essen und andere persönliche Tätigkeiten,Waschen und Anziehen,men,0.6833333333333333,91.6,0.8,2.4000000000000057,0.18333333333333335,2.5862068965517304
+Essen und andere persönliche Tätigkeiten,Inanspruchnahme persönlicher und medizinischer Versorgung,women,0.1,13.1,1.1333333333333333,3.299999999999999,0.03333333333333334,28.82096069868995
+Essen und andere persönliche Tätigkeiten,Inanspruchnahme persönlicher und medizinischer Versorgung,men,0.06666666666666667,9.8,1.1666666666666667,3.299999999999999,0.03333333333333334,28.82096069868995
+Essen und andere persönliche Tätigkeiten,Andere und nicht näher bestimmte persönliche Versorgung,women,0.05,11.6,0.7666666666666667,1.799999999999999,0,16.822429906542048
+Essen und andere persönliche Tätigkeiten,Andere und nicht näher bestimmte persönliche Versorgung,men,0.05,9.8,0.9666666666666667,1.799999999999999,0,16.822429906542048
+Essen und andere persönliche Tätigkeiten,Andere und nicht näher bestimmte Wege,women,0.08333333333333333,18.7,0.7666666666666667,2.099999999999998,0,11.898016997167128
+Essen und andere persönliche Tätigkeiten,Andere und nicht näher bestimmte Wege,men,0.08333333333333333,16.6,0.85,2.099999999999998,0,11.898016997167128
+Erwerbstätigkeit,Erwerbstätigkeit - Gesamt,women,2.216666666666667,42.2,7.45,-12.799999999999997,-1.3666666666666667,-26.337448559670772
+Erwerbstätigkeit,Erwerbstätigkeit - Gesamt,men,3.5833333333333335,55,8.85,-12.799999999999997,-1.3666666666666667,-26.337448559670772
+Erwerbstätigkeit,Arbeitszeit in der Haupt- und Zweittätigkeit,women,1.9333333333333333,39.5,6.883333333333333,-13.5,-1.2166666666666666,-29.18918918918919
+Erwerbstätigkeit,Arbeitszeit in der Haupt- und Zweittätigkeit,men,3.15,53,8.1,-13.5,-1.2166666666666666,-29.18918918918919
+Erwerbstätigkeit,Mittagspause in der Haupt- und Zweittätigkeit,women,0.05,9.2,0.7333333333333333,-8.8,-0.033333333333333326,-64.70588235294117
+Erwerbstätigkeit,Mittagspause in der Haupt- und Zweittätigkeit,men,0.08333333333333333,18,0.7333333333333333,-8.8,-0.033333333333333326,-64.70588235294117
+Erwerbstätigkeit,Andere und nicht näher bestimmte Tätigkeit in Bezug auf eine Erwerbstätigkeit,women,0.016666666666666666,4.8,0.6666666666666666,-0.40000000000000036,0,-8.000000000000007
+Erwerbstätigkeit,Andere und nicht näher bestimmte Tätigkeit in Bezug auf eine Erwerbstätigkeit,men,0.016666666666666666,5.2,0.7166666666666667,-0.40000000000000036,0,-8.000000000000007
+Erwerbstätigkeit,Wege für Erwerbstätigkeit,women,0.21666666666666667,31.1,1,-9.899999999999999,-0.09999999999999998,-27.461858529819693
+Erwerbstätigkeit,Wege für Erwerbstätigkeit,men,0.31666666666666665,41,1.1,-9.899999999999999,-0.09999999999999998,-27.461858529819693
+Aus- und Weiterbildung,Aus- und Weiterbildung - Gesamt,women,0.6666666666666666,14.8,5.816666666666666,0.40000000000000036,0.016666666666666607,2.7397260273972623
+Aus- und Weiterbildung,Aus- und Weiterbildung - Gesamt,men,0.65,14.4,5.916666666666667,0.40000000000000036,0.016666666666666607,2.7397260273972623
+Aus- und Weiterbildung,"Unterricht, Vorlesungen und Kurse in Schule und Studium",women,0.31666666666666665,7.8,5.9,-0.39999999999999947,-0.016666666666666663,-4.999999999999993
+Aus- und Weiterbildung,"Unterricht, Vorlesungen und Kurse in Schule und Studium",men,0.3333333333333333,8.2,5.816666666666666,-0.39999999999999947,-0.016666666666666663,-4.999999999999993
+Aus- und Weiterbildung,Hausaufgaben und Vorbereitungen für Schule und Studium,women,0.18333333333333332,10.4,2.5,0.40000000000000036,0,3.921568627450984
+Aus- und Weiterbildung,Hausaufgaben und Vorbereitungen für Schule und Studium,men,0.18333333333333332,10,2.4,0.40000000000000036,0,3.921568627450984
+Aus- und Weiterbildung,Unterrichtspausen,women,0.016666666666666666,2.7,0.7333333333333333,-0.6999999999999997,0,-22.95081967213114
+Aus- und Weiterbildung,Unterrichtspausen,men,0.016666666666666666,3.4,0.8,-0.6999999999999997,0,-22.95081967213114
+Aus- und Weiterbildung,Andere und nicht näher bestimmte Tätigkeit in Bezug auf Schule und Studium,women,0,0.9,0.5833333333333334,-0.20000000000000007,0,-20.000000000000007
+Aus- und Weiterbildung,Andere und nicht näher bestimmte Tätigkeit in Bezug auf Schule und Studium,men,0,1.1,1,-0.20000000000000007,0,-20.000000000000007
+Aus- und Weiterbildung,Homeschooling,women,0.016666666666666666,0.9,3.466666666666667,-0.20000000000000007,-0.016666666666666666,-20.000000000000007
+Aus- und Weiterbildung,Homeschooling,men,0.03333333333333333,1.1,3.8333333333333335,-0.20000000000000007,-0.016666666666666666,-20.000000000000007
+Aus- und Weiterbildung,"Weiterbildung außerhalb von Schule, Studium und Erwerbstätigkeit",women,0.03333333333333333,3.1,2,0.7000000000000002,0,25.454545454545464
+Aus- und Weiterbildung,"Weiterbildung außerhalb von Schule, Studium und Erwerbstätigkeit",men,0.03333333333333333,2.4,2.3666666666666667,0.7000000000000002,0,25.454545454545464
+Aus- und Weiterbildung,Wege für Aus- und Weiterbildung,women,0.06666666666666667,8.6,1.1833333333333333,0.5,0,5.9880239520958085
+Aus- und Weiterbildung,Wege für Aus- und Weiterbildung,men,0.06666666666666667,8.1,1.1,0.5,0,5.9880239520958085
+Sorgearbeit in Haushalt und Familie,Sorgearbeit in Haushalt und Familie - Gesamt,women,3.6166666666666667,95.5,4.083333333333333,8,1.5166666666666666,8.743169398907105
+Sorgearbeit in Haushalt und Familie,Sorgearbeit in Haushalt und Familie - Gesamt,men,2.1,87.5,2.85,8,1.5166666666666666,8.743169398907105
+Sorgearbeit in Haushalt und Familie,Nicht näher bestimmte Sorgearbeit in Haushalt und Familie,women,0.1,10.5,1.4666666666666668,5.7,0.06666666666666668,74.50980392156863
+Sorgearbeit in Haushalt und Familie,Nicht näher bestimmte Sorgearbeit in Haushalt und Familie,men,0.03333333333333333,4.8,1.0666666666666667,5.7,0.06666666666666668,74.50980392156863
+Sorgearbeit in Haushalt und Familie,Nahrungsmittelzubereitung,women,0.8333333333333334,81.2,1.2333333333333334,30,0.5166666666666667,45.31722054380665
+Sorgearbeit in Haushalt und Familie,Nahrungsmittelzubereitung,men,0.31666666666666665,51.2,0.8666666666666667,30,0.5166666666666667,45.31722054380665
+Sorgearbeit in Haushalt und Familie,Geschirr abwaschen,women,0.13333333333333333,38.7,0.5166666666666667,18.700000000000003,0.08333333333333333,63.7137989778535
+Sorgearbeit in Haushalt und Familie,Geschirr abwaschen,men,0.05,20,0.43333333333333335,18.700000000000003,0.08333333333333333,63.7137989778535
+Sorgearbeit in Haushalt und Familie,Konservieren und Lagern von Nahrungsmitteln,women,0.016666666666666666,2,1.1833333333333333,1.4,0,107.6923076923077
+Sorgearbeit in Haushalt und Familie,Konservieren und Lagern von Nahrungsmitteln,men,0.016666666666666666,0.6,2.3166666666666664,1.4,0,107.6923076923077
+Sorgearbeit in Haushalt und Familie,Aufräumen und Reinigung von Wohnung oder Haus,women,0.6166666666666667,66.7,1.25,31.800000000000004,0.4,62.59842519685041
+Sorgearbeit in Haushalt und Familie,Aufräumen und Reinigung von Wohnung oder Haus,men,0.21666666666666667,34.9,1.0666666666666667,31.800000000000004,0.4,62.59842519685041
+Sorgearbeit in Haushalt und Familie,Aufräumen und Reinigung von Außenflächen und Garten,women,0.016666666666666666,4,0.8166666666666667,-1.4000000000000004,-0.016666666666666666,-29.787234042553195
+Sorgearbeit in Haushalt und Familie,Aufräumen und Reinigung von Außenflächen und Garten,men,0.03333333333333333,5.4,1.1833333333333333,-1.4000000000000004,-0.016666666666666666,-29.787234042553195
+Sorgearbeit in Haushalt und Familie,Beheizung von Wohnung oder Haus und Warmwasseraufbereitung,women,0.016666666666666666,2.9,0.5833333333333334,-2.4,-0.03333333333333334,-58.53658536585367
+Sorgearbeit in Haushalt und Familie,Beheizung von Wohnung oder Haus und Warmwasseraufbereitung,men,0.05,5.3,1.4833333333333334,-2.4,-0.03333333333333334,-58.53658536585367
+Sorgearbeit in Haushalt und Familie,"Ordnen, Verräumen und Vorbereiten im Haushalt",women,0.16666666666666666,39.1,0.6666666666666666,12.3,0.06666666666666665,37.329286798179055
+Sorgearbeit in Haushalt und Familie,"Ordnen, Verräumen und Vorbereiten im Haushalt",men,0.1,26.8,0.6333333333333333,12.3,0.06666666666666665,37.329286798179055
+Sorgearbeit in Haushalt und Familie,Müll sortieren und entsorgen,women,0,4.6,0.3,-0.20000000000000018,-0.016666666666666666,-4.255319148936175
+Sorgearbeit in Haushalt und Familie,Müll sortieren und entsorgen,men,0.016666666666666666,4.8,0.4,-0.20000000000000018,-0.016666666666666666,-4.255319148936175
+Sorgearbeit in Haushalt und Familie,Andere und nicht näher bestimmte Reinigung und Ordnung,women,0,3.5,0.4166666666666667,1.9,0,74.50980392156863
+Sorgearbeit in Haushalt und Familie,Andere und nicht näher bestimmte Reinigung und Ordnung,men,0,1.6,0.35,1.9,0,74.50980392156863
+Sorgearbeit in Haushalt und Familie,Wäsche waschen,women,0.13333333333333333,32.1,0.7,24.3,0.11666666666666667,121.80451127819549
+Sorgearbeit in Haushalt und Familie,Wäsche waschen,men,0.016666666666666666,7.8,0.6,24.3,0.11666666666666667,121.80451127819549
+Sorgearbeit in Haushalt und Familie,Bügeln,women,0.08333333333333333,16.4,0.9833333333333333,15.099999999999998,0.08333333333333333,170.62146892655366
+Sorgearbeit in Haushalt und Familie,Bügeln,men,0,1.3,0.8666666666666667,15.099999999999998,0.08333333333333333,170.62146892655366
+Sorgearbeit in Haushalt und Familie,Andere und nicht näher bestimmte Pflege und Instandhaltung von Textilien,women,0,1.4,0.7,0.7,0,66.66666666666667
+Sorgearbeit in Haushalt und Familie,Andere und nicht näher bestimmte Pflege und Instandhaltung von Textilien,men,0,0.7,0.6833333333333333,0.7,0,66.66666666666667
+Sorgearbeit in Haushalt und Familie,Gartenarbeiten,women,0.16666666666666666,17.1,1.5666666666666667,0.7000000000000028,-0.05000000000000002,4.179104477611957
+Sorgearbeit in Haushalt und Familie,Gartenarbeiten,men,0.21666666666666667,16.4,2.066666666666667,0.7000000000000028,-0.05000000000000002,4.179104477611957
+Sorgearbeit in Haushalt und Familie,Nutztiere versorgen,women,0.03333333333333333,3.8,1.5,0.19999999999999973,-0.01666666666666667,5.405405405405398
+Sorgearbeit in Haushalt und Familie,Nutztiere versorgen,men,0.05,3.6,2.3333333333333335,0.19999999999999973,-0.01666666666666667,5.405405405405398
+Sorgearbeit in Haushalt und Familie,Haustiere versorgen,women,0.05,12.4,0.5166666666666667,5.7,0.03333333333333334,59.68586387434554
+Sorgearbeit in Haushalt und Familie,Haustiere versorgen,men,0.016666666666666666,6.7,0.5333333333333333,5.7,0.03333333333333334,59.68586387434554
+Sorgearbeit in Haushalt und Familie,Mit dem Hund spazieren gehen,women,0.11666666666666667,10.7,1.3833333333333333,1.6999999999999993,0.016666666666666663,17.258883248730957
+Sorgearbeit in Haushalt und Familie,Mit dem Hund spazieren gehen,men,0.1,9,1.5,1.6999999999999993,0.016666666666666663,17.258883248730957
+Sorgearbeit in Haushalt und Familie,Renovierungs- und Bauarbeiten an der Wohnung oder am Haus,women,0.016666666666666666,0.7,2.3833333333333333,-2.0999999999999996,-0.03333333333333334,-119.99999999999997
+Sorgearbeit in Haushalt und Familie,Renovierungs- und Bauarbeiten an der Wohnung oder am Haus,men,0.05,2.8,3.466666666666667,-2.0999999999999996,-0.03333333333333334,-119.99999999999997
+Sorgearbeit in Haushalt und Familie,Reparaturen in der Wohnung oder im Haus,women,0,1.2,1.3166666666666667,-1.4000000000000001,-0.016666666666666666,-73.6842105263158
+Sorgearbeit in Haushalt und Familie,Reparaturen in der Wohnung oder im Haus,men,0.016666666666666666,2.6,1.95,-1.4000000000000001,-0.016666666666666666,-73.6842105263158
+Sorgearbeit in Haushalt und Familie,"Herstellung, Reparatur und Instandhaltung von Gebrauchsgegenständen",women,0.016666666666666666,1.8,1.1833333333333333,-2.8,-0.016666666666666666,-87.5
+Sorgearbeit in Haushalt und Familie,"Herstellung, Reparatur und Instandhaltung von Gebrauchsgegenständen",men,0.03333333333333333,4.6,1.4333333333333333,-2.8,-0.016666666666666666,-87.5
+Sorgearbeit in Haushalt und Familie,Fahrzeugerhaltung (in Eigenarbeit),women,0,2.2,0.6666666666666666,-5.6,-0.05,-111.99999999999999
+Sorgearbeit in Haushalt und Familie,Fahrzeugerhaltung (in Eigenarbeit),men,0.05,7.8,1.2833333333333332,-5.6,-0.05,-111.99999999999999
+Sorgearbeit in Haushalt und Familie,"Andere und nicht näher bestimmte Bau-, Instandhaltungs- und Reparaturtätigkeiten",men,0.016666666666666666,1.2,2.8,NA,NA,NA
+Sorgearbeit in Haushalt und Familie,Einkaufen (inkl. Online-Shopping),women,0.38333333333333336,55.6,1.0333333333333334,11.100000000000001,0.10000000000000003,22.177822177822183
+Sorgearbeit in Haushalt und Familie,Einkaufen (inkl. Online-Shopping),men,0.2833333333333333,44.5,1.0166666666666666,11.100000000000001,0.10000000000000003,22.177822177822183
+Sorgearbeit in Haushalt und Familie,Inanspruchnahme von kommerziellen und administrativen Dienstleistungen,women,0.016666666666666666,4.7,0.6,-1.5,-0.016666666666666666,-27.522935779816514
+Sorgearbeit in Haushalt und Familie,Inanspruchnahme von kommerziellen und administrativen Dienstleistungen,men,0.03333333333333333,6.2,0.8833333333333333,-1.5,-0.016666666666666666,-27.522935779816514
+Sorgearbeit in Haushalt und Familie,Haushaltsmanagement,women,0.03333333333333333,9.4,0.6,2.1000000000000005,0,25.149700598802404
+Sorgearbeit in Haushalt und Familie,Haushaltsmanagement,men,0.03333333333333333,7.3,0.85,2.1000000000000005,0,25.149700598802404
+Sorgearbeit in Haushalt und Familie,Versorgung und Beaufsichtungung des Kindes,women,0.21666666666666667,14.4,1.6833333333333333,5.300000000000001,0.13333333333333336,45.10638297872341
+Sorgearbeit in Haushalt und Familie,Versorgung und Beaufsichtungung des Kindes,men,0.08333333333333333,9.1,1.1833333333333333,5.300000000000001,0.13333333333333336,45.10638297872341
+Sorgearbeit in Haushalt und Familie,Mit dem Kind lernen und üben,women,0.03333333333333333,4.8,1.1333333333333333,3.0999999999999996,0.016666666666666666,95.38461538461537
+Sorgearbeit in Haushalt und Familie,Mit dem Kind lernen und üben,men,0.016666666666666666,1.7,1.0166666666666666,3.0999999999999996,0.016666666666666666,95.38461538461537
+Sorgearbeit in Haushalt und Familie,"Mit dem Kind lesen, spielen und reden",women,0.15,12.4,1.6833333333333333,3.9000000000000004,0.06666666666666667,37.320574162679435
+Sorgearbeit in Haushalt und Familie,"Mit dem Kind lesen, spielen und reden",men,0.08333333333333333,8.5,1.4333333333333333,3.9000000000000004,0.06666666666666667,37.320574162679435
+Sorgearbeit in Haushalt und Familie,Das Kind zu Terminen und Aktivitäten begleiten,women,0.016666666666666666,3.1,1,1.8,0.016666666666666666,81.81818181818181
+Sorgearbeit in Haushalt und Familie,Das Kind zu Terminen und Aktivitäten begleiten,men,0,1.3,1.0333333333333334,1.8,0.016666666666666666,81.81818181818181
+Sorgearbeit in Haushalt und Familie,Andere und nicht näher bestimmte Kinderbetreuung,women,0,0.8,1.4,NA,NA,NA
+Sorgearbeit in Haushalt und Familie,Körperpflege und medizinische Versorgung eines erwachsenen Haushaltsmitglieds,women,0.016666666666666666,1.9,1.7,1.2999999999999998,0,103.99999999999999
+Sorgearbeit in Haushalt und Familie,Körperpflege und medizinische Versorgung eines erwachsenen Haushaltsmitglieds,men,0.016666666666666666,0.6,1.7666666666666666,1.2999999999999998,0,103.99999999999999
+Sorgearbeit in Haushalt und Familie,Andere Hilfeleistungen für ein erwachsenes Haushaltsmitglied,women,0,1.5,0.8333333333333334,0.6,0,50
+Sorgearbeit in Haushalt und Familie,Andere Hilfeleistungen für ein erwachsenes Haushaltsmitglied,men,0,0.9,0.85,0.6,0,50
+Sorgearbeit in Haushalt und Familie,"Wege für Einkaufen, kommerzielle und administrative Dienstleistungen",women,0.11666666666666667,35.7,0.55,6.700000000000003,0.016666666666666663,20.710973724884088
+Sorgearbeit in Haushalt und Familie,"Wege für Einkaufen, kommerzielle und administrative Dienstleistungen",men,0.1,29,0.55,6.700000000000003,0.016666666666666663,20.710973724884088
+Sorgearbeit in Haushalt und Familie,Wege für Kinderbetreuung,women,0.05,9.5,0.8,5.4,0.03333333333333334,79.41176470588236
+Sorgearbeit in Haushalt und Familie,Wege für Kinderbetreuung,men,0.016666666666666666,4.1,0.6833333333333333,5.4,0.03333333333333334,79.41176470588236
+Sorgearbeit in Haushalt und Familie,Wege für andere Sorgearbeiten in Haushalt und Familie,women,0.016666666666666666,4.1,0.7666666666666667,-0.6000000000000005,0,-13.636363636363647
+Sorgearbeit in Haushalt und Familie,Wege für andere Sorgearbeiten in Haushalt und Familie,men,0.016666666666666666,4.7,0.6833333333333333,-0.6000000000000005,0,-13.636363636363647
+Freiwilligentätigkeiten,Formelle Freiwilligentätigkeit,women,0.03333333333333333,1.9,2.95,-1.8000000000000003,-0.03333333333333333,-64.2857142857143
+Freiwilligentätigkeiten,Formelle Freiwilligentätigkeit,men,0.06666666666666667,3.7,2.8333333333333335,-1.8000000000000003,-0.03333333333333333,-64.2857142857143
+Freiwilligentätigkeiten,Informelle Hilfe bei Bau- und Reparaturarbeiten,women,0,0.5,2.1666666666666665,-0.8999999999999999,-0.016666666666666666,-94.73684210526315
+Freiwilligentätigkeiten,Informelle Hilfe bei Bau- und Reparaturarbeiten,men,0.016666666666666666,1.4,3,-0.8999999999999999,-0.016666666666666666,-94.73684210526315
+Freiwilligentätigkeiten,Informelle Hilfe bei Erwerbstätigkeit und Landwirtschaft,women,0,0.7,2.0833333333333335,-0.8,-0.016666666666666666,-72.72727272727273
+Freiwilligentätigkeiten,Informelle Hilfe bei Erwerbstätigkeit und Landwirtschaft,men,0.016666666666666666,1.5,3.2,-0.8,-0.016666666666666666,-72.72727272727273
+Freiwilligentätigkeiten,Kinderbetreuung von eigenen Kindern in anderem Haushalt,men,0.016666666666666666,0.8,2.2,NA,NA,NA
+Freiwilligentätigkeiten,Kinderbetreuung als Unterstützung für anderen Haushalt,women,0.08333333333333333,5.9,2.4333333333333336,3.0000000000000004,0.049999999999999996,68.18181818181819
+Freiwilligentätigkeiten,Kinderbetreuung als Unterstützung für anderen Haushalt,men,0.03333333333333333,2.9,1.95,3.0000000000000004,0.049999999999999996,68.18181818181819
+Freiwilligentätigkeiten,Hilfeleistung für eine erwachsene Person eines anderen Haushalts,women,0.03333333333333333,4.2,1.5666666666666667,0.20000000000000018,-0.01666666666666667,4.87804878048781
+Freiwilligentätigkeiten,Hilfeleistung für eine erwachsene Person eines anderen Haushalts,men,0.05,4,1.85,0.20000000000000018,-0.01666666666666667,4.87804878048781
+Freiwilligentätigkeiten,Andere und nicht näher bestimmte informelle Hilfe für einen anderen Haushalt,women,0.05,8.2,1.3,2.5999999999999996,0.01666666666666667,37.68115942028985
+Freiwilligentätigkeiten,Andere und nicht näher bestimmte informelle Hilfe für einen anderen Haushalt,men,0.03333333333333333,5.6,1.4666666666666668,2.5999999999999996,0.01666666666666667,37.68115942028985
+Freiwilligentätigkeiten,"Teilnahme an Veranstaltungen, Vereinstreffen",women,0.016666666666666666,0.9,3.15,-0.6,0,-50
+Freiwilligentätigkeiten,"Teilnahme an Veranstaltungen, Vereinstreffen",men,0.016666666666666666,1.5,2.716666666666667,-0.6,0,-50
+Freiwilligentätigkeiten,Religiöse Aktivitäten,women,0.05,7.4,1.25,2,0.01666666666666667,31.25
+Freiwilligentätigkeiten,Religiöse Aktivitäten,men,0.03333333333333333,5.4,1.5833333333333335,2,0.01666666666666667,31.25
+Freiwilligentätigkeiten,Friedhofsbesuch und Grabpflege,women,0.016666666666666666,4.1,0.7,2.1999999999999997,0,73.33333333333333
+Freiwilligentätigkeiten,Friedhofsbesuch und Grabpflege,men,0.016666666666666666,1.9,0.9166666666666666,2.1999999999999997,0,73.33333333333333
+Freiwilligentätigkeiten,Andere und nicht näher bestimmte partizipative Tätigkeiten,women,0,0.5,0.9166666666666666,0,0,0
+Freiwilligentätigkeiten,Andere und nicht näher bestimmte partizipative Tätigkeiten,men,0,0.5,0.7833333333333333,0,0,0
+Freiwilligentätigkeiten,"Wege für Freiwilligentätigkeit, informelle Hilfe, partizipative und religiöse Aktivitäten",women,0.03333333333333333,10.4,0.75,1.3000000000000007,0,13.333333333333341
+Freiwilligentätigkeiten,"Wege für Freiwilligentätigkeit, informelle Hilfe, partizipative und religiöse Aktivitäten",men,0.03333333333333333,9.1,0.7166666666666667,1.3000000000000007,0,13.333333333333341
+Soziale Kontakte und Freizeit,Soziale Kontakte und Freizeit - Gesamt,women,5.316666666666666,99.8,5.416666666666667,0,-0.5333333333333332,0
+Soziale Kontakte und Freizeit,Soziale Kontakte und Freizeit - Gesamt,men,5.85,99.8,6.033333333333333,0,-0.5333333333333332,0
+Soziale Kontakte und Freizeit,Interaktion mit Haushaltsmitgliedern,women,0.08333333333333333,16.7,0.8833333333333333,2.299999999999999,0,14.79099678456591
+Soziale Kontakte und Freizeit,Interaktion mit Haushaltsmitgliedern,men,0.08333333333333333,14.4,0.9333333333333333,2.299999999999999,0,14.79099678456591
+Soziale Kontakte und Freizeit,Haushaltsfremde Personen empfangen und besuchen,women,0.26666666666666666,27.7,1.7833333333333332,4.699999999999999,0.04999999999999999,18.540433925049307
+Soziale Kontakte und Freizeit,Haushaltsfremde Personen empfangen und besuchen,men,0.21666666666666667,23,1.8833333333333333,4.699999999999999,0.04999999999999999,18.540433925049307
+Soziale Kontakte und Freizeit,Private Feste,women,0.13333333333333333,7.6,4.1,0.39999999999999947,0.016666666666666663,5.405405405405398
+Soziale Kontakte und Freizeit,Private Feste,men,0.11666666666666667,7.2,4.083333333333333,0.39999999999999947,0.016666666666666663,5.405405405405398
+Soziale Kontakte und Freizeit,Audio- und Videoanrufe,women,0.11666666666666667,26.2,0.6666666666666666,12,0.06666666666666667,59.4059405940594
+Soziale Kontakte und Freizeit,Audio- und Videoanrufe,men,0.05,14.2,0.6,12,0.06666666666666667,59.4059405940594
+Soziale Kontakte und Freizeit,Kommunikation über Textnachrichten,women,0.08333333333333333,19.3,0.6833333333333333,3.3000000000000007,0,18.696883852691222
+Soziale Kontakte und Freizeit,Kommunikation über Textnachrichten,men,0.08333333333333333,16,0.7833333333333333,3.3000000000000007,0,18.696883852691222
+Soziale Kontakte und Freizeit,Nutzung von sozialen Medien,women,0.03333333333333333,7.3,0.9333333333333333,1.7999999999999998,0.016666666666666666,28.124999999999993
+Soziale Kontakte und Freizeit,Nutzung von sozialen Medien,men,0.016666666666666666,5.5,0.7333333333333333,1.7999999999999998,0.016666666666666666,28.124999999999993
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte soziale Kontakte,women,0.2833333333333333,27.8,1.8333333333333335,2.8000000000000007,0,10.606060606060609
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte soziale Kontakte,men,0.2833333333333333,25,2.1,2.8000000000000007,0,10.606060606060609
+Soziale Kontakte und Freizeit,Kino,women,0.016666666666666666,1.6,2.3833333333333333,0.40000000000000013,0,28.57142857142858
+Soziale Kontakte und Freizeit,Kino,men,0.016666666666666666,1.2,2.4333333333333336,0.40000000000000013,0,28.57142857142858
+Soziale Kontakte und Freizeit,"Theater, Konzert und Oper",women,0.016666666666666666,1.5,3.05,0.30000000000000004,0,22.222222222222225
+Soziale Kontakte und Freizeit,"Theater, Konzert und Oper",men,0.016666666666666666,1.2,2.8666666666666667,0.30000000000000004,0,22.222222222222225
+Soziale Kontakte und Freizeit,"Ausstellungen, Museen und Sehenswürdigkeiten",women,0.016666666666666666,1.8,3.15,0.5,0,32.25806451612903
+Soziale Kontakte und Freizeit,"Ausstellungen, Museen und Sehenswürdigkeiten",men,0.016666666666666666,1.3,2.183333333333333,0.5,0,32.25806451612903
+Soziale Kontakte und Freizeit,Bibliothek,women,0,0.3,0.4166666666666667,NA,NA,NA
+Soziale Kontakte und Freizeit,Besuch von Sportveranstaltungen,women,0.016666666666666666,1.2,2.8166666666666664,-0.8,-0.016666666666666666,-50
+Soziale Kontakte und Freizeit,Besuch von Sportveranstaltungen,men,0.03333333333333333,2,3.7666666666666666,-0.8,-0.016666666666666666,-50
+Soziale Kontakte und Freizeit,"Zoos, botanische Gärten und Naturschutzgebiete etc.",women,0,0.5,3.05,NA,NA,NA
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Unterhaltung und Kultur,women,0.06666666666666667,5.3,3.3,0,-0.016666666666666663,0
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Unterhaltung und Kultur,men,0.08333333333333333,5.3,3.6666666666666665,0,-0.016666666666666663,0
+Soziale Kontakte und Freizeit,Ausruhen und Pause,women,0.45,47.1,1.4,4.300000000000004,0,9.566184649610687
+Soziale Kontakte und Freizeit,Ausruhen und Pause,men,0.45,42.8,1.6333333333333333,4.300000000000004,0,9.566184649610687
+Soziale Kontakte und Freizeit,Spazieren gehen und Wandern,women,0.36666666666666664,36.9,1.6166666666666667,5.5,0.04999999999999999,16.105417276720353
+Soziale Kontakte und Freizeit,Spazieren gehen und Wandern,men,0.31666666666666665,31.4,1.8333333333333335,5.5,0.04999999999999999,16.105417276720353
+Soziale Kontakte und Freizeit,Joggen und Laufen,women,0.016666666666666666,2.5,1.25,-0.5,0,-18.181818181818183
+Soziale Kontakte und Freizeit,Joggen und Laufen,men,0.016666666666666666,3,1.2,-0.5,0,-18.181818181818183
+Soziale Kontakte und Freizeit,"Radfahren, Skifahren und Skaten",women,0.05,5.4,2.15,-3.1999999999999993,-0.05,-45.7142857142857
+Soziale Kontakte und Freizeit,"Radfahren, Skifahren und Skaten",men,0.1,8.6,2.35,-3.1999999999999993,-0.05,-45.7142857142857
+Soziale Kontakte und Freizeit,Ballsport,women,0.016666666666666666,2,2.15,-4,-0.06666666666666667,-100
+Soziale Kontakte und Freizeit,Ballsport,men,0.08333333333333333,6,2.3666666666666667,-4,-0.06666666666666667,-100
+Soziale Kontakte und Freizeit,Fitness und Gymnastik,women,0.08333333333333333,12.7,0.8833333333333333,0.7999999999999989,-0.016666666666666677,6.5040650406503975
+Soziale Kontakte und Freizeit,Fitness und Gymnastik,men,0.1,11.9,1.2,0.7999999999999989,-0.016666666666666677,6.5040650406503975
+Soziale Kontakte und Freizeit,Wassersport,women,0.05,4.3,1.9,0.5999999999999996,0.01666666666666667,14.999999999999991
+Soziale Kontakte und Freizeit,Wassersport,men,0.03333333333333333,3.7,1.8333333333333335,0.5999999999999996,0.01666666666666667,14.999999999999991
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Sportausübung,women,0.05,5.5,1.4666666666666668,-0.40000000000000036,-0.016666666666666663,-7.0175438596491295
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Sportausübung,men,0.06666666666666667,5.9,1.7666666666666666,-0.40000000000000036,-0.016666666666666663,-7.0175438596491295
+Soziale Kontakte und Freizeit,"Jagen, fischen und sammeln",women,0,0.7,2.3166666666666664,-1.1,-0.03333333333333333,-88.00000000000001
+Soziale Kontakte und Freizeit,"Jagen, fischen und sammeln",men,0.03333333333333333,1.8,3.216666666666667,-1.1,-0.03333333333333333,-88.00000000000001
+Soziale Kontakte und Freizeit,Sportbezogene Aktivitäten,women,0,2.1,0.4666666666666667,-0.6000000000000001,0,-25
+Soziale Kontakte und Freizeit,Sportbezogene Aktivitäten,men,0,2.7,0.5333333333333333,-0.6000000000000001,0,-25
+Soziale Kontakte und Freizeit,"Künstlerische Tätigkeiten (bildende und darstellende Kunst, Literatur)",women,0.05,6.7,1.3666666666666667,1,0,16.129032258064516
+Soziale Kontakte und Freizeit,"Künstlerische Tätigkeiten (bildende und darstellende Kunst, Literatur)",men,0.05,5.7,1.65,1,0,16.129032258064516
+Soziale Kontakte und Freizeit,Handarbeiten,women,0.06666666666666667,5.3,1.75,NA,NA,NA
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Hobbys,women,0.016666666666666666,1.6,1.4833333333333334,-2.8000000000000003,-0.05,-93.33333333333334
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Hobbys,men,0.06666666666666667,4.4,2.2,-2.8000000000000003,-0.05,-93.33333333333334
+Soziale Kontakte und Freizeit,"Programmieren, Installieren und Konfigurieren",women,0,0.6,1.1,-1.5,-0.016666666666666666,-111.1111111111111
+Soziale Kontakte und Freizeit,"Programmieren, Installieren und Konfigurieren",men,0.016666666666666666,2.1,1.6,-1.5,-0.016666666666666666,-111.1111111111111
+Soziale Kontakte und Freizeit,Informationssuche im Internet,women,0.05,8.2,0.9333333333333333,-3,-0.033333333333333326,-30.927835051546392
+Soziale Kontakte und Freizeit,Informationssuche im Internet,men,0.08333333333333333,11.2,1.25,-3,-0.033333333333333326,-30.927835051546392
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte digitale Anwendungen,women,0.03333333333333333,4.1,1.3333333333333333,-3.6000000000000005,-0.049999999999999996,-61.016949152542374
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte digitale Anwendungen,men,0.08333333333333333,7.7,1.6333333333333333,-3.6000000000000005,-0.049999999999999996,-61.016949152542374
+Soziale Kontakte und Freizeit,Einzelspiele und Glücksspiel,women,0.05,9.6,0.8833333333333333,3,0,37.03703703703704
+Soziale Kontakte und Freizeit,Einzelspiele und Glücksspiel,men,0.05,6.6,1.1333333333333333,3,0,37.03703703703704
+Soziale Kontakte und Freizeit,Gesellschafts- und Kartenspiele,women,0.08333333333333333,9.1,1.8,-0.3000000000000007,-0.016666666666666677,-3.243243243243251
+Soziale Kontakte und Freizeit,Gesellschafts- und Kartenspiele,men,0.1,9.4,1.9166666666666665,-0.3000000000000007,-0.016666666666666677,-3.243243243243251
+Soziale Kontakte und Freizeit,Computerspiele,women,0.03333333333333333,2.7,2.0833333333333335,-7.3,-0.15,-114.96062992125984
+Soziale Kontakte und Freizeit,Computerspiele,men,0.18333333333333332,10,2.8,-7.3,-0.15,-114.96062992125984
+Soziale Kontakte und Freizeit,Konsolenspiele,women,0.016666666666666666,1,1.6,-5.1,-0.06666666666666667,-143.6619718309859
+Soziale Kontakte und Freizeit,Konsolenspiele,men,0.08333333333333333,6.1,2.5,-5.1,-0.06666666666666667,-143.6619718309859
+Soziale Kontakte und Freizeit,Spiele am Handy und Tablet,women,0.03333333333333333,5.8,1.0166666666666666,0.2999999999999998,0,5.309734513274333
+Soziale Kontakte und Freizeit,Spiele am Handy und Tablet,men,0.03333333333333333,5.5,1.3,0.2999999999999998,0,5.309734513274333
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Spiele,women,0.03333333333333333,3.1,1.6833333333333333,0,0,0
+Soziale Kontakte und Freizeit,Andere und nicht näher bestimmte Spiele,men,0.03333333333333333,3.1,1.95,0,0,0
+Soziale Kontakte und Freizeit,Zeitungen und Zeitschriften lesen,women,0.11666666666666667,23.1,0.75,-0.6999999999999993,-0.033333333333333326,-2.9850746268656683
+Soziale Kontakte und Freizeit,Zeitungen und Zeitschriften lesen,men,0.15,23.8,0.9,-0.6999999999999993,-0.033333333333333326,-2.9850746268656683
+Soziale Kontakte und Freizeit,Bücher lesen,women,0.13333333333333333,18.1,1.2166666666666668,7.500000000000002,0.05,52.264808362369344
+Soziale Kontakte und Freizeit,Bücher lesen,men,0.08333333333333333,10.6,1.3166666666666667,7.500000000000002,0.05,52.264808362369344
+Soziale Kontakte und Freizeit,Anderes und nicht näher bestimmtes Lesen,women,0.13333333333333333,20.5,1,8.1,0.05,49.24012158054711
+Soziale Kontakte und Freizeit,Anderes und nicht näher bestimmtes Lesen,men,0.08333333333333333,12.4,1.0833333333333333,8.1,0.05,49.24012158054711
+Soziale Kontakte und Freizeit,"Fernsehen, Videos und DVDs anschauen, Streaming",women,1.9833333333333334,87.1,2.6166666666666667,-1.4000000000000057,-0.2833333333333332,-1.5945330296127627
+Soziale Kontakte und Freizeit,"Fernsehen, Videos und DVDs anschauen, Streaming",men,2.2666666666666666,88.5,2.966666666666667,-1.4000000000000057,-0.2833333333333332,-1.5945330296127627
+Soziale Kontakte und Freizeit,Radio und Musik hören,women,0.05,8.2,1.0833333333333333,-0.20000000000000107,0,-2.40963855421688
+Soziale Kontakte und Freizeit,Radio und Musik hören,men,0.05,8.4,1.0333333333333334,-0.20000000000000107,0,-2.40963855421688
+Soziale Kontakte und Freizeit,Wege für soziale Kontakte,women,0.11666666666666667,23.4,0.9333333333333333,4.899999999999999,0.03333333333333334,23.3890214797136
+Soziale Kontakte und Freizeit,Wege für soziale Kontakte,men,0.08333333333333333,18.5,0.9333333333333333,4.899999999999999,0.03333333333333334,23.3890214797136
+Soziale Kontakte und Freizeit,Wege für andere Freizeitaktivitäten,women,0.11666666666666667,18.9,1.1333333333333333,-2.200000000000003,-0.016666666666666663,-11.000000000000014
+Soziale Kontakte und Freizeit,Wege für andere Freizeitaktivitäten,men,0.13333333333333333,21.1,1.1666666666666667,-2.200000000000003,-0.016666666666666663,-11.000000000000014

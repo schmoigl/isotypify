@@ -1,0 +1,9 @@
+
+
+```{ojs}
+//| echo: false
+//| warning: false
+//| output: false
+import { slider, radio, button } from '@jashkenas/inputs'
+d3 = require("d3@6")
+```
