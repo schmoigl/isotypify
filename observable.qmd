@@ -19,7 +19,7 @@ execute:
 # Isotypify Your Life
 
 In the 1920s, Otto Neurath had a radical idea: what if statistics looked like *people* instead of bars?
-His [ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_%28picture_language%29) turned dry numbers into rows of little figures — intuitive, democratic, human.
+Their [ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_%28picture_language%29) turned dry numbers into rows of little figures — intuitive, democratic, human.
 
 This notebook revives that idea to visualize something stubbornly invisible: **who does what, and for how long**.
 
