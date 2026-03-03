@@ -2,6 +2,8 @@
 
 Modern isotype visualizations inspired by [Otto Neurath's ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_(picture_language)), built with [Quarto](https://quarto.org/), [D3.js](https://d3js.org/), and [Observable](https://observablehq.com/).
 
+**Live:** https://schmoigl.github.io/isoline/
+
 ## Getting Started
 
 ```bash
@@ -18,8 +20,8 @@ makeIsoline({
   data: [
     {
       key: "Women",
-      value: 0.75,              // 0-1 percentage
-      shapes: "abcdefg",        // character set
+      value: 0.75,
+      shapes: "abcdefg",
       fillHighlight: "coral",
       fillNormal: "#eee"
     }
