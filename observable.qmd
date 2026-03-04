@@ -405,10 +405,28 @@ groupedSelect = (config = {}) => {
 ## makeIsoline (paste as markdown cell)
 
 ```markdown
-## `makeIsoline(params)`
+## How to use `makeIsoline()`
 
-Renders an ISOTYPE-style figure grid. Each row shows a population of figures,
-with a share of them highlighted to represent a percentage.
+**Minimal example:**
+
+```
+import {makeIsoline} from "@schmoigl/isotypify-your-life"
+
+makeIsoline({
+  persPerLineValue: 20,
+  data: [
+    {
+      key: "Women",
+      value: 0.75,
+      shapes: "abcdefg",
+      fillHighlight: "#c1272d",
+      fillNormal: "#e8d5d5"
+    }
+  ]
+})
+```
+
+**Parameters:**
 
 | Parameter | Default | Description |
 |---|---|---|
@@ -434,23 +452,6 @@ with a share of them highlighted to represent a percentage.
 | `shapes` | — | String of Isotype font glyphs to use for this row |
 | `fillHighlight` | — | Color for highlighted figures |
 | `fillNormal` | — | Color for background figures |
-
-**Minimal example:**
-
-```js
-makeIsoline({
-  persPerLineValue: 20,
-  data: [
-    {
-      key: "Women",
-      value: 0.75,
-      shapes: "abcdefg",
-      fillHighlight: "#c1272d",
-      fillNormal: "#e8d5d5"
-    }
-  ]
-})
-\```
 ```
 
 ## makeIsoline (code cell)
