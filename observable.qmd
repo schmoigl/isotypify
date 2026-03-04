@@ -538,6 +538,18 @@ makeIsoline = (params = {}) => {
     return html`<div>${groupRows}</div>`;
   });
 
+  if (!document.getElementById("isotype-font-face")) {
+    const style = document.createElement("style");
+    style.id = "isotype-font-face";
+    style.textContent = `@font-face {
+      font-family: 'Isotype';
+      src: url('https://cdn.jsdelivr.net/gh/schmoigl/isoline@main/style/Retro%20Isotype.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }`;
+    document.head.appendChild(style);
+  }
+
   return html`<div style="margin: 0px 0 0 0">${rows}</div>`;
 }
 ```

@@ -2,7 +2,9 @@
 
 Modern isotype visualizations inspired by [Otto and Marie Neurath's ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_(picture_language)), built with [Quarto](https://quarto.org/), [D3.js](https://d3js.org/), and [Observable](https://observablehq.com/).
 
-**Live:** https://schmoigl.github.io/isoline/
+[![Isotypify Your Life](img/screenshot.png)](https://schmoigl.github.io/isoline/)
+
+**Live:** [schmoigl.github.io/isoline](https://schmoigl.github.io/isoline/) · [Observable Notebook](https://observablehq.com/@schmoigl/isotypify-your-life)
 
 ## Getting Started
 
