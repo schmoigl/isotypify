@@ -1,5 +1,5 @@
 ---
-title: "Isotypify Your Life — Observable Notebook"
+title: "Isotypify Your Data — Observable Notebook"
 format: html
 execute:
   echo: true
@@ -11,7 +11,7 @@ execute:
 -->
 
 ```markdown
-# Isotypify Your Life
+# Isotypify Your Data
 
 In the 1920s, Otto Neurath had a radical idea: what if statistics looked like *people* instead of bars?
 Their [ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_%28picture_language%29) turned dry numbers into rows of little figures — intuitive, democratic, human.
@@ -405,7 +405,7 @@ groupedSelect = (config = {}) => {
 **Minimal example:**
 
 ```
-import {makeIsoline} from "@schmoigl/isotypify-your-life"
+import {makeIsoline} from "@schmoigl/isotypify-your-data"
 
 makeIsoline({
   persPerLineValue: 20,
