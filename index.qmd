@@ -105,7 +105,7 @@ makeIsoline = (params = {}) => {
 
     // Create the percentage span
     const percentageText = html`
-      <span style="color: ${fillHighlight}; font-family: DM Sans; font-weight: 280;">
+      <span style="color: ${fillHighlight}; font-family: DM Sans, system-ui, -apple-system, sans-serif; font-weight: 280;">
         ${Math.round(highlightValue * 100)} von 100 ${subkey}
       </span>
     `;
@@ -113,8 +113,8 @@ makeIsoline = (params = {}) => {
     // Return row with label
     return html`
       <div style="margin-bottom: 6px;">
-        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: DM Sans; font-weight: 600; margin: 0 0 12px 0;">${group.key}</h3>` : html``}
-        ${!groupByKey ? html`<h3 style="font-family: DM Sans; font-weight: 600; margin: 0 0 12px 0;">${item.key}</h3>` : html``}
+        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: DM Sans, system-ui, -apple-system, sans-serif; font-weight: 600; margin: 0 0 12px 0;">${group.key}</h3>` : html``}
+        ${!groupByKey ? html`<h3 style="font-family: DM Sans, system-ui, -apple-system, sans-serif; font-weight: 600; margin: 0 0 12px 0;">${item.key}</h3>` : html``}
         ${percentageText}
         ${vizSvg}
       </div>
