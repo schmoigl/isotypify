@@ -4,7 +4,7 @@ Modern isotype visualizations inspired by [Otto and Marie Neurath's ISOTYPE syst
 
 [![Isotypify Your Life](img/screenshot.png)](https://schmoigl.github.io/isoline/)
 
-**Live:** [schmoigl.github.io/isoline](https://schmoigl.github.io/isoline/) · [Observable Notebook](https://observablehq.com/@schmoigl/isotypify-your-life)
+**Live:** [schmoigl.github.io/isoline](https://schmoigl.github.io/isoline/) · [Observable Notebook](https://observablehq.com/@schmoigl/isotypify-your-data)
 
 ## Getting Started
 
