@@ -1,5 +1,5 @@
 ---
-title: "Wer macht das? — Observable Notebook"
+title: "Isotypify Your Life — Observable Notebook"
 format: html
 execute:
   echo: true
@@ -7,13 +7,8 @@ execute:
 ---
 
 <!--
-  Paste each {ojs} block as one cell in ObservableHQ (observablehq.com).
-  Paste from top to bottom — Observable resolves dependencies reactively.
-  The first cell (fonts/styles) should be pasted as an HTML cell (click + → HTML).
-  The markdown below should be pasted as a markdown cell at the top of the notebook.
+  https://observablehq.com/@schmoigl/isotypify-your-data
 -->
-
-## Intro (paste as markdown cell)
 
 ```markdown
 # Isotypify Your Life
@@ -402,7 +397,7 @@ groupedSelect = (config = {}) => {
 }
 ```
 
-## makeIsoline (paste as markdown cell)
+## How to use `makeIsoline()`
 
 ```markdown
 ## How to use `makeIsoline()`
@@ -454,7 +449,7 @@ makeIsoline({
 | `fillNormal` | — | Color for background figures |
 ```
 
-## makeIsoline (code cell)
+## makeIsoline
 
 ```{ojs}
 makeIsoline = (params = {}) => {
