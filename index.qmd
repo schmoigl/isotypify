@@ -1,6 +1,6 @@
 ---
-title: "Wer macht das?"
-subtitle: "Geschlechterunterschiede in der Zeitverwendung in Österreich"
+title: "Isotypify"
+subtitle: "Build your own isotype visualization"
 execute:
   eval: true
   echo: false
@@ -10,116 +10,376 @@ execute:
   include: true
 ---
 
-Zeit ist eine begrenzte Ressource – und sie ist ungleich verteilt. Die Zeitverwendungserhebung der Statistik Austria zeigt: Frauen leisten nach wie vor den Großteil der unbezahlten Arbeit in Österreich, während Männer mehr Zeit in Erwerbsarbeit verbringen. Diese unsichtbare Arbeit – Kochen, Putzen, Kinderbetreuung, Pflege – hält unsere Gesellschaft am Laufen, wird aber weder entlohnt noch in wirtschaftlichen Kennzahlen erfasst.
-
-Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für rund `{ojs} width > 1200 ? "zwei" : width > 600 ? "vier" : "zehn"`  von hundert Personen: <span style="color: #D62300; font-weight: bold;">rot</span> für Frauen, <span style="color: #198737; font-weight: bold;">grün</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen. 
-
 {{< include src/00_libs.qmd >}}
 {{< include src/00_utils.qmd >}}
 {{< include src/01_makeIsoline.qmd >}}
 
-```{ojs}
-timeUse = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true})
-```
-
-```{ojs}
-// Prepare all data for visualization
-// Using Otto Neurath Isotype-style colors: red for women, blue for men
-vizData = timeUse.map(d => ({
-  key: d.activity,
-  subkey: d.gender === "women" ? "Frauen" : "Männer",  // German display label
-  gender: d.gender,
-  value: d.participation_pct / 100,
-  shapes: getShapes(d.activity, d.category, d.gender),
-  fillHighlight: d.gender === "women" ? palette[2] : palette[0],
-  fillNormal: palette[5]
-}))
-```
-
-```{ojs}
-// Build activity groups from category column, marking high gender differences
-activityGroups = {
-  const grouped = d3.group(timeUse, d => d.category);
-  const thresholdAbs = 5;   // percentage points (absolute difference)
-  const thresholdRel = 50;  // percent (relative difference)
-
-  return Array.from(grouped, ([category, items]) => ({
-    label: category,
-    options: [...new Set(items.map(d => d.activity))].map(activity => {
-      // Get the first row for this activity (difference is the same for both genders)
-      const row = items.find(d => d.activity === activity);
-      const diffAbs = row?.diff_participation || 0;
-      const diffRel = row?.diff_relative || 0;
-      const absDiffAbs = Math.abs(diffAbs);
-      const absDiffRel = Math.abs(diffRel);
-
-      // Mark as highlighted if absolute difference > 5pp OR relative difference >= 50%
-      let highlight = null;
-      let marker = "";
-      if (absDiffAbs > thresholdAbs || absDiffRel >= thresholdRel) {
-        highlight = diffAbs > 0 ? "female" : "male";
-        marker = diffAbs > 0 ? " (F+)" : " (M+)";
-      }
-
-      return {
-        value: activity,
-        label: activity + marker,
-        highlight: highlight
-      };
-    })
-  }));
+<style>
+/* ── Layout ── */
+.isotypify-layout-form,
+.isotypify-rows-form {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 8px 20px !important;
+  align-items: end !important;
+}
+.isotypify-layout-form > *,
+.isotypify-rows-form > * {
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+.isotypify-layout-form input,
+.isotypify-rows-form input {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+.isotypify-layout-form > form label,
+.isotypify-rows-form > form label {
+  white-space: nowrap;
+}
+.isotypify-layout-form label,
+.isotypify-rows-form label,
+.isotypify-layout-form output,
+.isotypify-rows-form output,
+.isotypify-layout-form input,
+.isotypify-rows-form input,
+.isotypify-layout-form input::placeholder,
+.isotypify-rows-form input::placeholder,
+.isotypify-layout-form select,
+.isotypify-rows-form select,
+.isotypify-layout-form textarea,
+.isotypify-rows-form textarea {
+  font-size: 14px !important;
 }
 
-viewof selectActivity = groupedSelect({
-  value: "Erwerbstätigkeit - Gesamt",
-  groups: activityGroups,
-  title: "Wählen sie eine Aktivität: ​ "
-})
+/* ── Number inputs (paired with range) ── */
+.isotypify-layout-form input[type="number"],
+.isotypify-rows-form input[type="number"] {
+  border: none !important;
+  border-bottom: 1.5px solid #000 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 3px 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  -moz-appearance: textfield !important;
+}
+.isotypify-layout-form input[type="number"]::-webkit-inner-spin-button,
+.isotypify-layout-form input[type="number"]::-webkit-outer-spin-button,
+.isotypify-rows-form input[type="number"]::-webkit-inner-spin-button,
+.isotypify-rows-form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.isotypify-layout-form input[type="number"]:focus,
+.isotypify-rows-form input[type="number"]:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ── Text inputs ── */
+.isotypify-layout-form input[type="text"],
+.isotypify-rows-form input[type="text"] {
+  border: none !important;
+  border-bottom: 1.5px solid #000 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 3px 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.isotypify-layout-form input[type="text"]:focus,
+.isotypify-rows-form input[type="text"]:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ── Range inputs ── */
+.isotypify-layout-form input[type="range"],
+.isotypify-rows-form input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px !important;
+  background: #e8e0d8 !important;
+  border-radius: 2px !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  accent-color: #198737;
+  padding: 0 !important;
+}
+.isotypify-layout-form input[type="range"]::-webkit-slider-thumb,
+.isotypify-rows-form input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #198737;
+  cursor: pointer;
+  border: none;
+}
+.isotypify-layout-form input[type="range"]::-moz-range-thumb,
+.isotypify-rows-form input[type="range"]::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #198737;
+  cursor: pointer;
+  border: none;
+}
+.isotypify-layout-form input[type="range"]::-moz-range-track,
+.isotypify-rows-form input[type="range"]::-moz-range-track {
+  height: 3px;
+  background: #e8e0d8;
+  border-radius: 2px;
+}
+
+/* ── Color inputs ── */
+.isotypify-layout-form input[type="color"],
+.isotypify-rows-form input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none !important;
+  border-bottom: 1.5px solid #000 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  width: 40px !important;
+  height: 22px !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.isotypify-layout-form input[type="color"]::-webkit-color-swatch-wrapper,
+.isotypify-rows-form input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.isotypify-layout-form input[type="color"]::-webkit-color-swatch,
+.isotypify-rows-form input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 0;
+}
+.isotypify-layout-form input[type="color"]::-moz-color-swatch,
+.isotypify-rows-form input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Checkboxes ── */
+.isotypify-layout-form input[type="checkbox"],
+.isotypify-rows-form input[type="checkbox"] {
+  accent-color: #198737 !important;
+  cursor: pointer !important;
+}
+</style>
+
+---
+
+### Layout
+
+```{ojs}
+viewof layoutOpts = {
+  const defaultPersPerLine = width >= 1200 ? 50 : width >= 600 ? 25 : 10;
+  const f = Inputs.form({
+    numRows:     Inputs.range([1, 6],   { step: 1,  value: 2,                    label: "Number of rows" }),
+    persPerLine: Inputs.range([5, 100], { step: 5,  value: defaultPersPerLine,   label: "Figures per row" }),
+    cellWidth:    Inputs.range([10, 40],  { step: 1,  value: 18,  label: "Cell width (px)" }),
+    cellHeight:   Inputs.range([60, 160], { step: 10, value: 100, label: "Cell height (px)" }),
+    personHeight: Inputs.range([40, 160], { step: 5,  value: 100, label: "Glyph size (px)" }),
+    randomOrder: Inputs.checkbox(["Random order"]),
+    groupByKey:  Inputs.checkbox(["Collect heading"]),
+  });
+  f.classList.add("isotypify-layout-form");
+  return f;
+}
+```
+
+```{ojs}
+//| classes: isotypify-rows
+// All 4 row forms live here permanently so their values survive numRows changes.
+// Visibility is managed by the cell below via DOM IDs.
+viewof rowData = {
+  const defaults = [
+    { key: "Group A", pct: 75, subkey: "persons", hi: palette[0], lo: palette[5], shapes: "" },
+    { key: "Group B", pct: 45, subkey: "persons", hi: palette[1], lo: palette[5], shapes: "" },
+    { key: "Group C", pct: 60, subkey: "persons", hi: palette[2], lo: palette[5], shapes: "" },
+    { key: "Group D", pct: 80, subkey: "persons", hi: palette[3], lo: palette[5], shapes: "" },
+  ];
+
+  const container = html`<div></div>`;
+  const subForms = [];
+
+  for (let i = 0; i < 4; i++) {
+    const d = defaults[i];
+    const form = Inputs.form({
+      key:    Inputs.text({  label: "Label",           value: d.key,    width: 200 }),
+      pct:    Inputs.range([0, 100], { label: "% highlighted", value: d.pct, step: 1 }),
+      subkey: Inputs.text({  label: "Unit label",      value: d.subkey, width: 140 }),
+      hi:     Inputs.color({ label: "Highlight color", value: d.hi }),
+      lo:     Inputs.color({ label: "Background color",value: d.lo }),
+      shapes: Inputs.text({  label: "Glyphs",          placeholder: "leave blank for default", width: 260 }),
+    });
+    form.classList.add("isotypify-rows-form");
+    subForms.push(form);
+
+    const section = document.createElement("div");
+    section.id = `isotypify-row-${i}`;
+    section.style.cssText = `margin-bottom: 24px; padding-bottom: 16px; display: ${i < 2 ? "" : "none"};`;
+
+    const heading = document.createElement("h3");
+    heading.textContent = `Row ${i + 1}`;
+    heading.style.cssText = "margin: 0 0 8px 0;";
+    section.appendChild(heading);
+    section.appendChild(form);
+    container.appendChild(section);
+  }
+
+  container.value = subForms.map(f => f.value);
+  subForms.forEach(f => f.addEventListener("input", () => {
+    container.value = subForms.map(f => f.value);
+    container.dispatchEvent(new CustomEvent("input"));
+  }));
+
+  return container;
+}
+```
+
+```{ojs}
+//| output: false
+// Reactive visibility: show/hide row sections based on numRows.
+// References rowData to guarantee this runs after the forms are rendered.
+{
+  rowData;
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById(`isotypify-row-${i}`);
+    if (el) el.style.display = i < layoutOpts.numRows ? "" : "none";
+  }
+}
 ```
 
 ---
 
-```{ojs .mainViz}
-isolines = makeIsoline({
-  data: vizData.filter(d => d.key == selectActivity),
-  persPerLineValue: width > 1200 ? 50 : width > 600 ? 25 : 10,
-  cellWidth: width > 1200 ? 23 : width > 600 ? 23 : 28,
-  randomOrder: false,
-  groupByKey: true
-})
+```{ojs}
+{
+  const data = rowData.slice(0, layoutOpts.numRows).map(r => ({
+    key:           r.key    || "–",
+    value:         r.pct    / 100,
+    subkey:        r.subkey || "persons",
+    fillHighlight: r.hi,
+    fillNormal:    r.lo,
+    ...(r.shapes ? { shapes: r.shapes } : {})
+  }));
 
-selectedData = timeUse.filter(d => d.activity === selectActivity)
-womenData = selectedData.find(d => d.gender === "women")
-menData = selectedData.find(d => d.gender === "men")
+  const viz = makeIsoline({
+    data,
+    persPerLineValue: layoutOpts.persPerLine,
+    cellWidth:        layoutOpts.cellWidth,
+    cellHeight:       layoutOpts.cellHeight,
+    personHeight:     layoutOpts.personHeight,
+    randomOrder:      layoutOpts.randomOrder.length > 0,
+    groupByKey:       layoutOpts.groupByKey.length > 0
+  });
 
-// Calculate differences
-diffAbs = womenData?.participation_pct - menData?.participation_pct
-diffRel = womenData?.diff_relative
-
-activityLabel = selectActivity.replace(' - Gesamt', '')
-
-htl.html`<p style="margin: 0px;">
-  <span style="color: ${palette[2]}; font-weight: bold;">${Math.round(womenData?.participation_pct)}%</span>
-  aller <span style="color: ${palette[2]}; font-weight: bold;">Frauen</span>
-  geben an, in einer Woche Zeit mit <strong>${activityLabel}</strong> zu verbringen.
-  Frauen verbringen im Schnitt
-  <span style="color: ${palette[2]}; font-weight: bold;">${womenData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>
-  damit. Für <span style="color: ${palette[0]}; font-weight: bold;">Männer</span>
-  belaufen sich diese Zahlen auf
-  <span style="color: ${palette[0]}; font-weight: bold;">${Math.round(menData?.participation_pct)}%</span>
-  und <span style="color: ${palette[0]}; font-weight: bold;">${menData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>.
-  Der Unterschied beträgt ${Math.abs(diffAbs).toFixed(1).replace('.', ',')} Prozentpunkte
-  bzw. ${Math.abs(diffRel).toFixed(0)}%.
-  ${diffAbs !== 0 ? `${diffAbs > 0 ? 'Frauen' : 'Männer'} üben die Tätigkeit häufiger aus.` : ''}
-</p>`
+  const container = html`<div id="isotypify-preview"></div>`;
+  container.appendChild(viz);
+  return container;
+}
 ```
 
-<p style="margin-top:12px">Datenquelle: [Statistik Austria – Zeitverwendung](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung){target="_blank"}</p>
+```{ojs}
+{
+  const btn = html`<button style="font-family: Jost, sans-serif; font-size: 14px; font-weight: 280; cursor: pointer; border: none; border-bottom: 1.5px solid #000; background: transparent; padding: 4px 0; margin-top: 4px;">⬇ Download PNG</button>`;
 
+  btn.onclick = async () => {
+    const preview = document.getElementById('isotypify-preview');
+    if (!preview) return;
+    btn.textContent = 'Generating…';
+    btn.disabled = true;
+
+    try {
+      // Embed Isotype font as base64 so it renders in the exported canvas
+      const buf = await fetch('style/Retro Isotype.ttf').then(r => r.arrayBuffer());
+      let binary = '';
+      const bytes = new Uint8Array(buf);
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      const fontFace = `@font-face{font-family:'Isotype';src:url('data:font/truetype;base64,${btoa(binary)}')format('truetype')}`;
+
+      // Walk each row div and collect SVG content + text labels
+      const rowDivs = [...preview.querySelectorAll('div[style*="margin-bottom: 6px"]')];
+      if (!rowDivs.length) return;
+
+      const firstSvg = preview.querySelector('svg');
+      const W = firstSvg ? +firstSvg.getAttribute('width') : 800;
+      const pad = 16;
+      const serializer = new XMLSerializer();
+      let y = pad;
+      const parts = [];
+
+      for (const div of rowDivs) {
+        const h3   = div.querySelector('h3');
+        const span = div.querySelector('span');
+        const svg  = div.querySelector('svg');
+
+        if (h3) {
+          parts.push(`<text x="${pad}" y="${y + 20}" font-family="sans-serif" font-size="18" font-weight="bold" fill="#000">${h3.textContent.trim()}</text>`);
+          y += 32;
+        }
+        if (span) {
+          const color = span.style.color || '#000';
+          parts.push(`<text x="${pad}" y="${y + 16}" font-family="sans-serif" font-size="14" fill="${color}">${span.textContent.trim()}</text>`);
+          y += 24;
+        }
+        if (svg) {
+          const svgH = +svg.getAttribute('height');
+          const inner = [...svg.children].map(c => serializer.serializeToString(c)).join('');
+          parts.push(`<g transform="translate(0,${y})">${inner}</g>`);
+          y += svgH + 6;
+        }
+      }
+
+      const totalH = y + pad;
+      const compositeSVG = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${totalH}">
+        <defs><style>${fontFace}</style></defs>
+        <rect width="${W}" height="${totalH}" fill="white"/>
+        ${parts.join('\n')}
+      </svg>`;
+
+      // Render to 2× canvas for retina quality
+      const scale = 2;
+      const canvas = document.createElement('canvas');
+      canvas.width  = W * scale;
+      canvas.height = totalH * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(scale, scale);
+
+      await new Promise((resolve, reject) => {
+        const img  = new Image();
+        const blob = new Blob([compositeSVG], { type: 'image/svg+xml;charset=utf-8' });
+        const url  = URL.createObjectURL(blob);
+        img.onload  = () => { ctx.drawImage(img, 0, 0); URL.revokeObjectURL(url); resolve(); };
+        img.onerror = (e) => { URL.revokeObjectURL(url); reject(e); };
+        img.src = url;
+      });
+
+      const a = document.createElement('a');
+      a.download = 'isotypify.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+
+    } catch(e) {
+      console.error(e);
+      alert('Export failed: ' + e.message);
+    } finally {
+      btn.textContent = '⬇ Download PNG';
+      btn.disabled = false;
+    }
+  };
+
+  return btn;
+}
+```
 
 ---
 
-<h3>Danksagung</h3>
-
-- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
-- Isotype Font von [Ric Stephens](https://www.dafont.com/isotype.font){target="_blank"}
+<p style="margin-top:12px">Isotype font by <a href="https://www.dafont.com/isotype.font" target="_blank">Ric Stephens</a>. Inspired by <a href="https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart" target="_blank">Basile Simon</a>.</p>

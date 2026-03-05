@@ -7,7 +7,7 @@ project:
     watch-inputs: true
   render:
     - index.qmd
-    - isotypify.qmd
+    - demo.qmd
   resources:
     - src/
 website:

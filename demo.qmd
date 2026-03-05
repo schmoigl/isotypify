@@ -1,0 +1,125 @@
+---
+title: "Wer macht das?"
+subtitle: "Geschlechterunterschiede in der Zeitverwendung in Österreich"
+execute:
+  eval: true
+  echo: false
+  output: true
+  warning: false
+  error: true
+  include: true
+---
+
+Zeit ist eine begrenzte Ressource – und sie ist ungleich verteilt. Die Zeitverwendungserhebung der Statistik Austria zeigt: Frauen leisten nach wie vor den Großteil der unbezahlten Arbeit in Österreich, während Männer mehr Zeit in Erwerbsarbeit verbringen. Diese unsichtbare Arbeit – Kochen, Putzen, Kinderbetreuung, Pflege – hält unsere Gesellschaft am Laufen, wird aber weder entlohnt noch in wirtschaftlichen Kennzahlen erfasst.
+
+Diese Visualisierung macht die Ungleichverteilung sichtbar. Jede Figur steht für rund `{ojs} width > 1200 ? "zwei" : width > 600 ? "vier" : "zehn"`  von hundert Personen: <span style="color: #D62300; font-weight: bold;">rot</span> für Frauen, <span style="color: #198737; font-weight: bold;">grün</span> für Männer. Auf einen Blick zeigt sich, wer welche Tätigkeiten übernimmt. Im Auswahlmenü sind jene Aktivitäten farblich hervorgehoben, bei denen besonders große Geschlechterunterschiede bestehen. 
+
+{{< include src/00_libs.qmd >}}
+{{< include src/00_utils.qmd >}}
+{{< include src/01_makeIsoline.qmd >}}
+
+```{ojs}
+timeUse = FileAttachment("data/zeitverwendung_long.csv").csv({typed: true})
+```
+
+```{ojs}
+// Prepare all data for visualization
+// Using Otto Neurath Isotype-style colors: red for women, blue for men
+vizData = timeUse.map(d => ({
+  key: d.activity,
+  subkey: d.gender === "women" ? "Frauen" : "Männer",  // German display label
+  gender: d.gender,
+  value: d.participation_pct / 100,
+  shapes: getShapes(d.activity, d.category, d.gender),
+  fillHighlight: d.gender === "women" ? palette[2] : palette[0],
+  fillNormal: palette[5]
+}))
+```
+
+```{ojs}
+// Build activity groups from category column, marking high gender differences
+activityGroups = {
+  const grouped = d3.group(timeUse, d => d.category);
+  const thresholdAbs = 5;   // percentage points (absolute difference)
+  const thresholdRel = 50;  // percent (relative difference)
+
+  return Array.from(grouped, ([category, items]) => ({
+    label: category,
+    options: [...new Set(items.map(d => d.activity))].map(activity => {
+      // Get the first row for this activity (difference is the same for both genders)
+      const row = items.find(d => d.activity === activity);
+      const diffAbs = row?.diff_participation || 0;
+      const diffRel = row?.diff_relative || 0;
+      const absDiffAbs = Math.abs(diffAbs);
+      const absDiffRel = Math.abs(diffRel);
+
+      // Mark as highlighted if absolute difference > 5pp OR relative difference >= 50%
+      let highlight = null;
+      let marker = "";
+      if (absDiffAbs > thresholdAbs || absDiffRel >= thresholdRel) {
+        highlight = diffAbs > 0 ? "female" : "male";
+        marker = diffAbs > 0 ? " (F+)" : " (M+)";
+      }
+
+      return {
+        value: activity,
+        label: activity + marker,
+        highlight: highlight
+      };
+    })
+  }));
+}
+
+viewof selectActivity = groupedSelect({
+  value: "Erwerbstätigkeit - Gesamt",
+  groups: activityGroups,
+  title: "Wählen sie eine Aktivität: ​ "
+})
+```
+
+---
+
+```{ojs .mainViz}
+isolines = makeIsoline({
+  data: vizData.filter(d => d.key == selectActivity),
+  persPerLineValue: width > 1200 ? 50 : width > 600 ? 25 : 10,
+  cellWidth: width > 1200 ? 23 : width > 600 ? 23 : 28,
+  randomOrder: false,
+  groupByKey: true
+})
+
+selectedData = timeUse.filter(d => d.activity === selectActivity)
+womenData = selectedData.find(d => d.gender === "women")
+menData = selectedData.find(d => d.gender === "men")
+
+// Calculate differences
+diffAbs = womenData?.participation_pct - menData?.participation_pct
+diffRel = womenData?.diff_relative
+
+activityLabel = selectActivity.replace(' - Gesamt', '')
+
+htl.html`<p style="margin: 0px;">
+  <span style="color: ${palette[2]}; font-weight: bold;">${Math.round(womenData?.participation_pct)}%</span>
+  aller <span style="color: ${palette[2]}; font-weight: bold;">Frauen</span>
+  geben an, in einer Woche Zeit mit <strong>${activityLabel}</strong> zu verbringen.
+  Frauen verbringen im Schnitt
+  <span style="color: ${palette[2]}; font-weight: bold;">${womenData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>
+  damit. Für <span style="color: ${palette[0]}; font-weight: bold;">Männer</span>
+  belaufen sich diese Zahlen auf
+  <span style="color: ${palette[0]}; font-weight: bold;">${Math.round(menData?.participation_pct)}%</span>
+  und <span style="color: ${palette[0]}; font-weight: bold;">${menData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>.
+  Der Unterschied beträgt ${Math.abs(diffAbs).toFixed(1).replace('.', ',')} Prozentpunkte
+  bzw. ${Math.abs(diffRel).toFixed(0)}%.
+  ${diffAbs !== 0 ? `${diffAbs > 0 ? 'Frauen' : 'Männer'} üben die Tätigkeit häufiger aus.` : ''}
+</p>`
+```
+
+<p style="margin-top:12px">Datenquelle: [Statistik Austria – Zeitverwendung](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung){target="_blank"}</p>
+
+
+---
+
+<h3>Danksagung</h3>
+
+- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
+- Isotype Font von [Ric Stephens](https://www.dafont.com/isotype.font){target="_blank"}
