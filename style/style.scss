@@ -1,12 +1,14 @@
 /*-- scss:defaults --*/
-$font-family-sans-serif: "DM Sans";
+$font-family-sans-serif: "Jost";
 $font-weight-base: 280;
-$headings-font-family: "DM Sans";
+$headings-font-family: "Jost";
 $headings-font-weight: 600;
-$color-frauen: #c1272d;
+$color-frauen: #D62300;
 $link-color: $color-frauen;
 
 /*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
 @font-face {
     font-family: 'Isotype';
     src: url('style/Retro Isotype.ttf') format('truetype');
@@ -14,22 +16,8 @@ $link-color: $color-frauen;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'DM Sans';
-    src: url('style/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'DM Sans';
-    src: url('style/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: italic;
-}
-
 form, output {
-    font-family: "DM Sans" !important;
+    font-family: "Jost" !important;
     font-weight: 280 !important;
     font-size: 18px !important;
     overflow: visible !important;
@@ -62,7 +50,7 @@ form, output {
         right: 24px;
         bottom: -2px;
         height: 8px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 4 Q 5 0, 10 4 T 20 4' stroke='%23c1272d' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 4 Q 5 0, 10 4 T 20 4' stroke='%23D62300' stroke-width='2' fill='none'/%3E%3C/svg%3E");
         background-repeat: repeat-x;
         background-size: 14px 6px;
         pointer-events: none;

@@ -1,0 +1,121 @@
+
+```{ojs}
+makeIsoline = (params = {}) => {
+  const {
+    data = null,              // array of row objects: { key, value (0-1), subkey?, shapes?, fillHighlight?, fillNormal? }
+    vizWidth = width,         // total SVG width in px; defaults to Observable's reactive viewport width
+    cellWidth = 18,           // horizontal space per figure in px — controls packing density
+    cellHeight = 100,         // row height in px
+    personHeight = 100,       // Isotype glyph font-size in px — effectively the figure height
+    persPerLineValue = Math.floor(vizWidth / cellWidth) - 1, // figures per row; determines the "N per 100" scale
+    defaultShapes = "abcdefghilmnopqSBDEGHIJKLNOPRSTVWXYZ", // fallback glyph pool from the Isotype font; per-row shapes override this
+    defaultFillHighlight = palette[0],  // fallback color for highlighted (active) figures; per-row fillHighlight overrides this
+    defaultFillNormal = palette[5],     // fallback color for non-highlighted figures; per-row fillNormal overrides this
+    randomOrder = true,  // true: scatter highlighted figures via MD5 hash; false: pack them left-to-right
+    groupByKey = false   // true: rows sharing the same key are grouped under one <h3>; false: each row gets its own <h3>
+  } = params;
+
+  // Group data by key if groupByKey is true
+  const dataGroups = groupByKey
+    ? Array.from(d3.group(data, d => d.key), ([key, items]) => ({ key, items }))
+    : data.map(item => ({ key: item.key, items: [item] }));
+
+  // Create rows for each group
+  const rows = dataGroups.map((group, groupIndex) => {
+    const groupRows = group.items.map((item, rowIndex) => {
+    const highlightValue = item.value;
+    const shapes = item.shapes || defaultShapes;
+    const fillHighlight = item.fillHighlight || defaultFillHighlight;
+    const fillNormal = item.fillNormal || defaultFillNormal;
+    const subkey = item.subkey || "Personen";
+    const highlightCountValue = Math.round(persPerLineValue * highlightValue);
+
+    // Generate person with custom alphabet
+    const generatePersonCustom = seed => {
+      const avatarChoices = shapes;
+      const id = "person_" + d3.format("0>4")(seed) + "_row" + rowIndex;
+      const avatar = randomOrder
+        ? avatarChoices[parseInt(md5(id).slice(0, 2), 16) % avatarChoices.length]
+        : avatarChoices[seed % avatarChoices.length];
+      return {
+        id,
+        avatar,
+        highlight: seed < highlightCountValue ? true : false
+      };
+    };
+
+    // Render person with custom colors
+    const renderPersonCustom = (p) => {
+      const fillColor = p.highlight ? fillHighlight : fillNormal;
+      const strokeColor = "#fff";
+
+      return svg`
+        <g class="person">
+          <text y="0"
+            style="font-size: ${personHeight}px; font-family: Isotype"
+            fill="${fillColor}"
+            stroke="${strokeColor}"
+            stroke-width="3">
+            ${p.avatar}
+          </text>
+
+        <text y="0"
+          style="font-size: ${personHeight}px; font-family: Isotype;"
+          fill="${fillColor}">
+            ${p.avatar}
+        </text>
+        </g>
+      `;
+    };
+
+    // Create the SVG visualization for this row
+    const people = d3.range(persPerLineValue).map(generatePersonCustom);
+    const height = cellHeight;
+
+    const vizSvg = html`
+      <svg width="${vizWidth}" height="${height}">
+        <g transform="translate(0, 80)">
+          ${people.map((p, i) => ({ p, i })).reverse().map(
+            ({ p, i }) => svg`
+            <g transform="translate(${i * cellWidth}, 0)">
+              ${renderPersonCustom(p)}
+            </g>`
+          )}
+        </g>
+      </svg>
+    `;
+
+    // Create the percentage span
+    const percentageText = html`
+      <span style="color: ${fillHighlight}; font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 280;">
+        ${Math.round(highlightValue * 100)} of 100 ${subkey}
+      </span>
+    `;
+
+    // Return row with label
+    return html`
+      <div style="margin-bottom: 6px;">
+        ${groupByKey && rowIndex === 0 ? html`<h3 style="font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 600; margin: 0 0 12px 0;">${group.key}</h3>` : html``}
+        ${!groupByKey ? html`<h3 style="font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 600; margin: 0 0 12px 0;">${item.key}</h3>` : html``}
+        ${percentageText}
+        ${vizSvg}
+      </div>
+    `;
+    });
+
+    // Return group container
+    return html`
+      <div style="margin-bottom: ${groupByKey ? '0px' : '0px'};">
+        ${groupRows}
+      </div>
+    `;
+  });
+
+  // Return all rows in a container
+  return html`
+    <div style="margin: 0px 0 0 0">
+      ${rows}
+    </div>
+  `;
+}
+```

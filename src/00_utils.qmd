@@ -1,5 +1,9 @@
 
 ```{ojs}
+palette = ["#198737", "#FF8732", "#D62300", "#FFAA00", "#502314", "#F5EBDC"]
+```
+
+```{ojs}
 md5 = {
   function md5cycle(x, k) {
     var a = x[0],
@@ -182,8 +186,8 @@ groupedSelect = (config = {}) => {
     multiple,
     size,
     groups,
-    highlightColorFemale = "#c1272d80",
-    highlightColorMale = "#1e3a5f80"
+    highlightColorFemale = "#D6230080",
+    highlightColorMale = "#19873780"
   } = config;
 
   if (Array.isArray(config)) groups = config;
@@ -231,7 +235,7 @@ groupedSelect = (config = {}) => {
     select.appendChild(optgroup);
   }
 
-  const form = html`<form style="font-family: DM Sans; font-weight: 280;"></form>`;
+  const form = html`<form style="font-family: Jost; font-weight: 280;"></form>`;
 
   // Wrap select in wrapper for wavy underline styling
   selectWrapper.appendChild(select);

@@ -1,16 +1,16 @@
-# Isoline
+# Isoline & Isotypify
 
 Modern isotype visualizations inspired by [Otto and Marie Neurath's ISOTYPE system](https://en.wikipedia.org/wiki/Isotype_(picture_language)), built with [Quarto](https://quarto.org/), [D3.js](https://d3js.org/), and [Observable](https://observablehq.com/).
 
-[![Isotypify Your Data](img/screenshot.png)](https://schmoigl.github.io/isoline/)
+[![Isotypify Your Data](img/screenshot.png)](https://schmoigl.github.io/isotypify/)
 
-**Live:** [schmoigl.github.io/isoline](https://schmoigl.github.io/isoline/) · [Observable Notebook](https://observablehq.com/@schmoigl/isotypify-your-data)
+**Live:** [schmoigl.github.io/isotypify](https://schmoigl.github.io/isotypify/) · [Observable Notebook](https://observablehq.com/@schmoigl/isotypify-your-data)
 
 ## Getting Started
 
 ```bash
-git clone https://github.com/schmoigl/isoline.git
-cd isoline
+git clone https://github.com/schmoigl/isotypify.git
+cd isotypify
 quarto preview
 ```
 

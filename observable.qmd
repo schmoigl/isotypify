@@ -20,8 +20,8 @@ This notebook revives that idea to visualize something stubbornly invisible: **w
 
 Using Austria's national time-use survey ([Statistik Austria, 2021–22](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/zeitverwendung)),
 each figure below represents roughly 2–10 out of every 100 people (depending on screen size 2, 5 or 10).
-<span style="color:#c1272d; font-weight:600;">Red</span> for women,
-<span style="color:#1e3a5f; font-weight:600;">blue</span> for men.
+<span style="color:#D62300; font-weight:600;">Red</span> for women,
+<span style="color:#198737; font-weight:600;">green</span> for men.
 Activities marked **(F+)** or **(M+)** in the dropdown show the largest gender gaps.
 
 The picture that emerges is familiar — and still worth seeing.
@@ -39,7 +39,7 @@ html`<style>
 
 @font-face {
   font-family: 'Isotype';
-  src: url('https://cdn.jsdelivr.net/gh/schmoigl/isoline@main/style/Retro%20Isotype.ttf') format('truetype');
+  src: url('https://cdn.jsdelivr.net/gh/schmoigl/isotypify@main/style/Retro%20Isotype.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -83,7 +83,7 @@ html`<style>
   right: 24px;
   bottom: -2px;
   height: 8px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 4 Q 5 0, 10 4 T 20 4' stroke='%23c1272d' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 4 Q 5 0, 10 4 T 20 4' stroke='%23D62300' stroke-width='2' fill='none'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 14px 6px;
   pointer-events: none;
@@ -323,8 +323,8 @@ groupedSelect = (config = {}) => {
     multiple,
     size,
     groups,
-    highlightColorFemale = "#c1272d80",
-    highlightColorMale = "#1e3a5f80"
+    highlightColorFemale = "#D6230080",
+    highlightColorMale = "#19873780"
   } = config;
 
   if (Array.isArray(config)) groups = config;
@@ -414,8 +414,8 @@ makeIsoline({
       key: "Women",
       value: 0.75,
       shapes: "abcdefg",
-      fillHighlight: "#c1272d",
-      fillNormal: "#e8d5d5"
+      fillHighlight: "#D62300",
+      fillNormal: "#F5EBDC"
     }
   ]
 })
@@ -539,7 +539,7 @@ makeIsoline = (params = {}) => {
     style.id = "isotype-font-face";
     style.textContent = `@font-face {
       font-family: 'Isotype';
-      src: url('https://cdn.jsdelivr.net/gh/schmoigl/isoline@main/style/Retro%20Isotype.ttf') format('truetype');
+      src: url('https://cdn.jsdelivr.net/gh/schmoigl/isotypify@main/style/Retro%20Isotype.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }`;
@@ -555,7 +555,7 @@ makeIsoline = (params = {}) => {
 ```{ojs}
 // Load from public GitHub raw URL — or attach the CSV file directly to the notebook
 timeUse = d3.csv(
-  "https://raw.githubusercontent.com/schmoigl/isoline/main/data/zeitverwendung_long.csv",
+  "https://raw.githubusercontent.com/schmoigl/isotypify/main/data/zeitverwendung_long.csv",
   d3.autoType
 )
 ```
@@ -567,8 +567,8 @@ vizData = timeUse.map(d => ({
   gender: d.gender,
   value: d.participation_pct / 100,
   shapes: getShapes(d.activity, d.category, d.gender),
-  fillHighlight: d.gender === "women" ? "#c1272d" : "#1e3a5f",
-  fillNormal: d.gender === "women" ? "#e8d5d5" : "#d5dce3"
+  fillHighlight: d.gender === "women" ? "#D62300" : "#198737",
+  fillNormal: "#F5EBDC"
 }))
 ```
 
@@ -630,15 +630,15 @@ isolines = makeIsoline({
   const activityLabel = selectActivity.replace(' - Gesamt', '');
 
   return htl.html`<p style="margin: 0px;">
-    <span style="color: #c1272d; font-weight: bold;">${Math.round(womenData?.participation_pct)}%</span>
-    aller <span style="color: #c1272d; font-weight: bold;">Frauen</span>
+    <span style="color: #D62300; font-weight: bold;">${Math.round(womenData?.participation_pct)}%</span>
+    aller <span style="color: #D62300; font-weight: bold;">Frauen</span>
     geben an, in einer Woche Zeit mit <strong>${activityLabel}</strong> zu verbringen.
     Frauen verbringen im Schnitt
-    <span style="color: #c1272d; font-weight: bold;">${womenData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>
-    damit. Für <span style="color: #1e3a5f; font-weight: bold;">Männer</span>
+    <span style="color: #D62300; font-weight: bold;">${womenData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>
+    damit. Für <span style="color: #198737; font-weight: bold;">Männer</span>
     belaufen sich diese Zahlen auf
-    <span style="color: #1e3a5f; font-weight: bold;">${Math.round(menData?.participation_pct)}%</span>
-    und <span style="color: #1e3a5f; font-weight: bold;">${menData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>.
+    <span style="color: #198737; font-weight: bold;">${Math.round(menData?.participation_pct)}%</span>
+    und <span style="color: #198737; font-weight: bold;">${menData?.participant_hours.toFixed(1).replace('.', ',')} Stunden</span>.
     Der Unterschied beträgt ${Math.abs(diffAbs).toFixed(1).replace('.', ',')} Prozentpunkte
     bzw. ${Math.abs(diffRel).toFixed(0)}%.
     ${diffAbs !== 0 ? `${diffAbs > 0 ? 'Frauen' : 'Männer'} üben die Tätigkeit häufiger aus.` : ''}

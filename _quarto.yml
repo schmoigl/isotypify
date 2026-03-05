@@ -5,8 +5,9 @@ project:
     port: 1111
     browser: true
     watch-inputs: true
-  render: 
+  render:
     - index.qmd
+    - isotypify.qmd
   resources:
     - src/
 website:
