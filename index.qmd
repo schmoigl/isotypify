@@ -222,7 +222,7 @@ viewof rowData = {
         label: "Glyphs",
         placeholder: "leave blank for default", 
         width: 260,
-        value: "aGPcNe", 
+        value: "aGbPcZNeWiH", 
         }),
     });
     form.classList.add("isotypify-rows-form");

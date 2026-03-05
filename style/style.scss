@@ -111,15 +111,31 @@ hr {
 }
 
 // Navbar styling
-.navbar-logo {
-    height: 54px;
-    width: auto;
+img.navbar-logo {
+    height: 50px !important;
+    max-height: none !important;
+    width: auto !important;
+    margin: 6px 8px;
+}
+
+.navbar-brand-container {
+    height: 62px !important;
+    overflow: visible !important;
+}
+
+a.navbar-brand.navbar-brand-logo {
+    height: 62px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
 .navbar {
     background-color: white !important;
     border-bottom: 1.5px solid #000;
     box-shadow: none !important;
+    height: 62px !important;
+    padding: 0 1rem !important;
 
     .navbar-brand,
     .nav-link {
