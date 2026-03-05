@@ -50,6 +50,11 @@ quarto preview
 - **[Isotype Font](https://www.dafont.com/isotype.font)** — 234+ pictographic glyphs by Ric Stephens
 - **[Jost](https://fonts.google.com/specimen/Jost)** — headings and body text
 
+## Acknowledgements
+
+- Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font)
+- Inspired by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart)
+
 ---
 
 **Maintained by:** [@schmoigl](https://github.com/schmoigl) | **Organization:** [WIFO](https://www.wifo.ac.at/)

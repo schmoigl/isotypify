@@ -1,5 +1,5 @@
 ---
-title: "Isotypify"
+title: "ISOTYPIFY"
 subtitle: "Build your own isotype visualization"
 execute:
   eval: true
@@ -184,7 +184,7 @@ viewof layoutOpts = {
   const f = Inputs.form({
     numRows:     Inputs.range([1, 6],   { step: 1,  value: 2,                    label: "Number of rows" }),
     persPerLine: Inputs.range([5, 100], { step: 5,  value: defaultPersPerLine,   label: "Figures per row" }),
-    cellWidth:    Inputs.range([10, 40],  { step: 1,  value: 18,  label: "Cell width (px)" }),
+    cellWidth:    Inputs.range([10, 40],  { step: 1,  value: 22,  label: "Cell width (px)" }),
     cellHeight:   Inputs.range([60, 160], { step: 10, value: 100, label: "Cell height (px)" }),
     personHeight: Inputs.range([40, 160], { step: 5,  value: 100, label: "Glyph size (px)" }),
     randomOrder: Inputs.checkbox(["Random order"]),
@@ -215,17 +215,22 @@ viewof rowData = {
     const form = Inputs.form({
       key:    Inputs.text({  label: "Label",           value: d.key,    width: 200 }),
       pct:    Inputs.range([0, 100], { label: "% highlighted", value: d.pct, step: 1 }),
-      subkey: Inputs.text({  label: "Unit label",      value: d.subkey, width: 140 }),
+      subkey: Inputs.text({ label: "Unit label", value: d.subkey, width: 140 }),
       hi:     Inputs.color({ label: "Highlight color", value: d.hi }),
       lo:     Inputs.color({ label: "Background color",value: d.lo }),
-      shapes: Inputs.text({  label: "Glyphs",          placeholder: "leave blank for default", width: 260 }),
+      shapes: Inputs.text({
+        label: "Glyphs",
+        placeholder: "leave blank for default", 
+        width: 260,
+        value: "aGPcNe", 
+        }),
     });
     form.classList.add("isotypify-rows-form");
     subForms.push(form);
 
     const section = document.createElement("div");
     section.id = `isotypify-row-${i}`;
-    section.style.cssText = `margin-bottom: 24px; padding-bottom: 16px; display: ${i < 2 ? "" : "none"};`;
+    section.style.cssText = `margin: 12px auto 12px auto; display: ${i < 2 ? "" : "none"};`;
 
     const heading = document.createElement("h3");
     heading.textContent = `Row ${i + 1}`;
@@ -288,6 +293,7 @@ viewof rowData = {
 ```
 
 ```{ojs}
+//| eval: false
 {
   const btn = html`<button style="font-family: Jost, sans-serif; font-size: 14px; font-weight: 280; cursor: pointer; border: none; border-bottom: 1.5px solid #000; background: transparent; padding: 4px 0; margin-top: 4px;">⬇ Download PNG</button>`;
 
@@ -298,54 +304,26 @@ viewof rowData = {
     btn.disabled = true;
 
     try {
-      // Embed Isotype font as base64 so it renders in the exported canvas
-      const buf = await fetch('style/Retro Isotype.ttf').then(r => r.arrayBuffer());
-      let binary = '';
-      const bytes = new Uint8Array(buf);
-      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-      const fontFace = `@font-face{font-family:'Isotype';src:url('data:font/truetype;base64,${btoa(binary)}')format('truetype')}`;
-
-      // Walk each row div and collect SVG content + text labels
       const rowDivs = [...preview.querySelectorAll('div[style*="margin-bottom: 6px"]')];
       if (!rowDivs.length) return;
 
       const firstSvg = preview.querySelector('svg');
-      const W = firstSvg ? +firstSvg.getAttribute('width') : 800;
+      const W   = firstSvg ? +firstSvg.getAttribute('width') : 800;
       const pad = 16;
-      const serializer = new XMLSerializer();
-      let y = pad;
-      const parts = [];
 
+      // Measure total height before creating canvas
+      let totalH = pad;
       for (const div of rowDivs) {
-        const h3   = div.querySelector('h3');
-        const span = div.querySelector('span');
-        const svg  = div.querySelector('svg');
-
-        if (h3) {
-          parts.push(`<text x="${pad}" y="${y + 20}" font-family="sans-serif" font-size="18" font-weight="bold" fill="#000">${h3.textContent.trim()}</text>`);
-          y += 32;
-        }
-        if (span) {
-          const color = span.style.color || '#000';
-          parts.push(`<text x="${pad}" y="${y + 16}" font-family="sans-serif" font-size="14" fill="${color}">${span.textContent.trim()}</text>`);
-          y += 24;
-        }
-        if (svg) {
-          const svgH = +svg.getAttribute('height');
-          const inner = [...svg.children].map(c => serializer.serializeToString(c)).join('');
-          parts.push(`<g transform="translate(0,${y})">${inner}</g>`);
-          y += svgH + 6;
-        }
+        if (div.querySelector('h3'))   totalH += 32;
+        if (div.querySelector('span')) totalH += 24;
+        const svg = div.querySelector('svg');
+        if (svg) totalH += +svg.getAttribute('height') + 6;
       }
+      totalH += pad;
 
-      const totalH = y + pad;
-      const compositeSVG = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${totalH}">
-        <defs><style>${fontFace}</style></defs>
-        <rect width="${W}" height="${totalH}" fill="white"/>
-        ${parts.join('\n')}
-      </svg>`;
+      // Ensure the Isotype font is loaded in the document before drawing
+      await document.fonts.load(`100px Isotype`);
 
-      // Render to 2× canvas for retina quality
       const scale = 2;
       const canvas = document.createElement('canvas');
       canvas.width  = W * scale;
@@ -353,14 +331,64 @@ viewof rowData = {
       const ctx = canvas.getContext('2d');
       ctx.scale(scale, scale);
 
-      await new Promise((resolve, reject) => {
-        const img  = new Image();
-        const blob = new Blob([compositeSVG], { type: 'image/svg+xml;charset=utf-8' });
-        const url  = URL.createObjectURL(blob);
-        img.onload  = () => { ctx.drawImage(img, 0, 0); URL.revokeObjectURL(url); resolve(); };
-        img.onerror = (e) => { URL.revokeObjectURL(url); reject(e); };
-        img.src = url;
-      });
+      // White background
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, W, totalH);
+
+      let y = pad;
+
+      for (const div of rowDivs) {
+        const h3   = div.querySelector('h3');
+        const span = div.querySelector('span');
+        const svg  = div.querySelector('svg');
+
+        if (h3) {
+          // Use system sans-serif — canvas weight 600 is reliable cross-browser
+          ctx.font = '600 18px sans-serif';
+          ctx.fillStyle = '#000';
+          ctx.fillText(h3.textContent.trim(), pad, y + 20);
+          y += 32;
+        }
+        if (span) {
+          ctx.font = '14px sans-serif';
+          ctx.fillStyle = span.style.color || '#000';
+          ctx.fillText(span.textContent.trim(), pad, y + 16);
+          y += 24;
+        }
+        if (svg) {
+          const svgH = +svg.getAttribute('height');
+
+          // getCTM() returns the accumulated transform matrix from element coords
+          // to SVG viewport — more reliable than parsing transform strings.
+          // Skip the stroke-duplicate text elements (those have a stroke attribute).
+          const fillTexts = [...svg.querySelectorAll('text')].filter(t => !t.getAttribute('stroke'));
+          const fontSize  = parseInt(fillTexts[0]?.style.fontSize) || 100;
+          ctx.font = `${fontSize}px Isotype`;
+
+          // Pass 1: white outline for all glyphs first
+          ctx.strokeStyle = 'white';
+          ctx.lineWidth   = 3;
+          ctx.lineJoin    = 'round';
+          for (const t of fillTexts) {
+            const m = t.getCTM();
+            if (!m) continue;
+            const char = t.textContent.trim();
+            if (char) ctx.strokeText(char, m.e, y + m.f);
+          }
+
+          // Pass 2: colored fill
+          for (const t of fillTexts) {
+            const m = t.getCTM();
+            if (!m) continue;
+            const char = t.textContent.trim();
+            if (!char) continue;
+            ctx.fillStyle = t.getAttribute('fill') || '#000';
+            ctx.fillText(char, m.e, y + m.f);
+          }
+
+          y += svgH + 6;
+        }
+      }
 
       const a = document.createElement('a');
       a.download = 'isotypify.png';

@@ -11,9 +11,19 @@ project:
   resources:
     - src/
 website:
-  title: "ISOTYPE"
+  title: "ISOTYPIFY"
   favicon: img/favicon.ico
-  navbar: false
+  navbar:
+    left:
+      - href: index.qmd
+        text: Editor
+      - href: demo.qmd
+        text: Demo
+    right:
+      - icon: github
+        href: https://github.com/schmoigl/isotypify
+        aria-label: GitHub
+  search: false
 format:
   html:
     theme: [style/style.scss]

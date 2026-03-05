@@ -104,6 +104,33 @@ form, output {
     }
 }
 
+hr {
+    border-color: #000;
+    border-width: 1.5px;
+    opacity: 1;
+}
+
+// Navbar styling
+.navbar {
+    background-color: white !important;
+    border-bottom: 1.5px solid #000;
+    box-shadow: none !important;
+
+    .navbar-brand,
+    .nav-link {
+        color: #333 !important;
+
+        &:hover {
+            color: $color-frauen !important;
+        }
+    }
+
+    .nav-link.active {
+        color: $color-frauen !important;
+        font-weight: 500;
+    }
+}
+
 // Global select override for Observable/Quarto - hide scrollbar
 .observablehq select,
 .cell-output select,
