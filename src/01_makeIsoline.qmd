@@ -88,7 +88,7 @@ makeIsoline = (params = {}) => {
     // Create the percentage span
     const percentageText = html`
       <span style="color: ${fillHighlight}; font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 280;">
-        ${Math.round(highlightValue * 100)} of 100 ${subkey}
+        ${Math.round(highlightValue * 100)} / 100 ${subkey}
       </span>
     `;
 
