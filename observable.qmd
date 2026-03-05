@@ -367,7 +367,7 @@ groupedSelect = (config = {}) => {
     select.appendChild(optgroup);
   }
 
-  const form = html`<form style="font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 280;"></form>`;
+  const form = html`<form style="font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 350;"></form>`;
 
   selectWrapper.appendChild(select);
 
@@ -514,7 +514,7 @@ makeIsoline = (params = {}) => {
         </svg>`;
 
       const percentageText = html`
-        <span style="color: ${fillHighlight}; font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 280;">
+        <span style="color: ${fillHighlight}; font-family: Jost, system-ui, -apple-system, sans-serif; font-weight: 350;">
           ${Math.round(highlightValue * 100)} von 100 ${subkey}
         </span>`;
 
