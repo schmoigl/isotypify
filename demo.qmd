@@ -1,5 +1,5 @@
 ---
-title: "Wer macht das?"
+title: "WER MACHT DAS?"
 subtitle: "Geschlechterunterschiede in der Zeitverwendung in Österreich"
 execute:
   eval: true
@@ -121,5 +121,6 @@ htl.html`<p style="margin: 0px;">
 
 <h3>Danksagung</h3>
 
-- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
 - Isotype Font von [Ric Stephens](https://www.dafont.com/isotype.font){target="_blank"}
+- Idee basierend auf Umsetzung von [Basile Simon](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
+- [AK Wien](https://www.arbeiterkammer.at/){target="_blank"} für die Inspiration durch die [Ausschreibung](https://wien.arbeiterkammer.at/neurath){target="_blank"}

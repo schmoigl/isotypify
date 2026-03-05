@@ -14,6 +14,7 @@ website:
   title: "ISOTYPIFY"
   favicon: img/favicon.ico
   navbar:
+    logo: img/figure.svg
     left:
       - href: index.qmd
         text: Editor
