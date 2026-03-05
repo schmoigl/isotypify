@@ -60,7 +60,7 @@ execute:
 .isotypify-layout-form input[type="number"],
 .isotypify-rows-form input[type="number"] {
   border: none !important;
-  border-bottom: 1.5px solid #000 !important;
+  border-bottom: 1px solid #000 !important;
   border-radius: 0 !important;
   background: transparent !important;
   padding: 3px 0 !important;
@@ -85,7 +85,7 @@ execute:
 .isotypify-layout-form input[type="text"],
 .isotypify-rows-form input[type="text"] {
   border: none !important;
-  border-bottom: 1.5px solid #000 !important;
+  border-bottom: 1px solid #000 !important;
   border-radius: 0 !important;
   background: transparent !important;
   padding: 3px 0 !important;
@@ -144,7 +144,7 @@ execute:
   -webkit-appearance: none;
   appearance: none;
   border: none !important;
-  border-bottom: 1.5px solid #000 !important;
+  border-bottom: 1px solid #000 !important;
   border-radius: 0 !important;
   padding: 0 !important;
   width: 40px !important;
@@ -298,7 +298,7 @@ viewof rowData = {
 ```{ojs}
 //| eval: false
 {
-  const btn = html`<button style="font-family: Jost, sans-serif; font-size: 14px; font-weight: 280; cursor: pointer; border: none; border-bottom: 1.5px solid #000; background: transparent; padding: 4px 0; margin-top: 4px;">⬇ Download PNG</button>`;
+  const btn = html`<button style="font-family: Jost, sans-serif; font-size: 14px; font-weight: 280; cursor: pointer; border: none; border-bottom: 1px solid #000; background: transparent; padding: 4px 0; margin-top: 4px;">⬇ Download PNG</button>`;
 
   btn.onclick = async () => {
     const preview = document.getElementById('isotypify-preview');
