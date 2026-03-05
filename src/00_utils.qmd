@@ -235,7 +235,7 @@ groupedSelect = (config = {}) => {
     select.appendChild(optgroup);
   }
 
-  const form = html`<form style="font-family: Jost; font-weight: 280;"></form>`;
+  const form = html`<form style="font-family: Jost; font-weight: 350;"></form>`;
 
   // Wrap select in wrapper for wavy underline styling
   selectWrapper.appendChild(select);
