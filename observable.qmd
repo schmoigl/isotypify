@@ -28,7 +28,7 @@ The picture that emerges is familiar — and still worth seeing.
 
 ---
 
-*Inspired by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart). Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font).*
+*Based upon implementation by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart). Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font).*
 ```
 
 ## Fonts & Styles

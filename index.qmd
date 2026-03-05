@@ -416,5 +416,5 @@ viewof rowData = {
 <h3>Acknowledgements</h3>
 
 - Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font){target="_blank"}
-- Inspired by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
+- Based upon implementation by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
 - [AK Wien](https://www.arbeiterkammer.at/){target="_blank"} for inspiring this visualization by issuing [this call](https://wien.arbeiterkammer.at/neurath){target="_blank"}

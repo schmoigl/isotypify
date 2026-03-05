@@ -53,7 +53,7 @@ quarto preview
 ## Acknowledgements
 
 - Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font)
-- Inspired by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart)
+- Based upon implementation by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart)
 - [AK Wien](https://www.arbeiterkammer.at/) for inspiring this visualization by issuing [this call](https://wien.arbeiterkammer.at/neurath)
 
 ---
