@@ -20,7 +20,7 @@ execute:
 .isotypify-rows-form {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
-  gap: 8px 20px !important;
+  gap: 4px 20px !important;
   align-items: end !important;
 }
 .isotypify-layout-form > *,
@@ -28,6 +28,8 @@ execute:
   width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 .isotypify-layout-form input,
 .isotypify-rows-form input {
