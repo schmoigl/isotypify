@@ -1,1 +1,1 @@
-Sitemap: https://schmoigl.github.io/isoline/sitemap.xml
+Sitemap: https://schmoigl.github.io/isotypify/sitemap.xml
