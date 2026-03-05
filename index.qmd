@@ -182,7 +182,7 @@ execute:
 viewof layoutOpts = {
   const defaultPersPerLine = width >= 1200 ? 50 : width >= 600 ? 25 : 10;
   const f = Inputs.form({
-    numRows:     Inputs.range([1, 6],   { step: 1,  value: 2,                    label: "Number of rows" }),
+    numRows:     Inputs.range([1, 5],   { step: 1,  value: 2,                    label: "Number of rows" }),
     persPerLine: Inputs.range([5, 100], { step: 5,  value: defaultPersPerLine,   label: "Figures per row" }),
     cellWidth:    Inputs.range([10, 40],  { step: 1,  value: 22,  label: "Cell width (px)" }),
     cellHeight:   Inputs.range([60, 160], { step: 10, value: 100, label: "Cell height (px)" }),
@@ -197,7 +197,7 @@ viewof layoutOpts = {
 
 ```{ojs}
 //| classes: isotypify-rows
-// All 4 row forms live here permanently so their values survive numRows changes.
+// All 5 row forms live here permanently so their values survive numRows changes.
 // Visibility is managed by the cell below via DOM IDs.
 viewof rowData = {
   const defaults = [
@@ -205,12 +205,13 @@ viewof rowData = {
     { key: "Group B", pct: 45, subkey: "persons", hi: palette[1], lo: palette[5], shapes: "" },
     { key: "Group C", pct: 60, subkey: "persons", hi: palette[2], lo: palette[5], shapes: "" },
     { key: "Group D", pct: 80, subkey: "persons", hi: palette[3], lo: palette[5], shapes: "" },
+    { key: "Group E", pct: 55, subkey: "persons", hi: palette[4], lo: palette[5], shapes: "" },
   ];
 
   const container = html`<div></div>`;
   const subForms = [];
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const d = defaults[i];
     const form = Inputs.form({
       key:    Inputs.text({  label: "Label",           value: d.key,    width: 200 }),
@@ -256,7 +257,7 @@ viewof rowData = {
 // References rowData to guarantee this runs after the forms are rendered.
 {
   rowData;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const el = document.getElementById(`isotypify-row-${i}`);
     if (el) el.style.display = i < layoutOpts.numRows ? "" : "none";
   }
@@ -414,4 +415,4 @@ viewof rowData = {
 
 - Isotype font by [Ric Stephens](https://www.dafont.com/isotype.font){target="_blank"}
 - Inspired by [Basile Simon's ISOTYPE sketch](https://observablehq.com/@basilesimon/isotype-sketch-a-wee-people-bar-chart){target="_blank"}
-- [AK Wien](https://www.arbeiterkammer.at/){target="_blank"} for inspiring this visualization by issuing the [call](https://wien.arbeiterkammer.at/neurath){target="_blank"}
+- [AK Wien](https://www.arbeiterkammer.at/){target="_blank"} for inspiring this visualization by issuing [this call](https://wien.arbeiterkammer.at/neurath){target="_blank"}
